@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CRUDUD</string>
+    <string name="txtTitle">Título</string>
+    <string name="txtAutor">Autor</string>
+    <string name="txtEditora">Editora</string>
+    <string name="btnCadastrar">Cadastrar</string>
+    <string name="btnConsultar">Consultar</string>
+    <string name="fieldTitulo" />
+    <string name="fieldAutor" />
+    <string name="fieldEditora" />
+    <string name="btnAlterar">Alterar</string>
+    <string name="btnDeletar">Deletar</string>
+</resources>
