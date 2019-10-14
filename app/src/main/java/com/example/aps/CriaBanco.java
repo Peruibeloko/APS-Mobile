@@ -24,19 +24,19 @@ public class CriaBanco extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String sql = "CREATE TABLE " + TABELA + "(" +
-                ID + " integer primary key autoincrement," +
-                TITULO + " text," +
-                AUTOR + " text," +
-                EDITORA + " text " + ")";
-
-                sqLiteDatabase.execSQL(sql);
+        Livro.createTabela(sqLiteDatabase);
+        Cliente.createTabela(sqLiteDatabase);
+        CategoriaLivro.createTabela(sqLiteDatabase);
+        CategoriaLeitor.createTabela(sqLiteDatabase);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABELA);
+        Livro.upgradeTabela(sqLiteDatabase);
+        Cliente.upgradeTabela(sqLiteDatabase);
+        CategoriaLivro.upgradeTabela(sqLiteDatabase);
+        CategoriaLeitor.upgradeTabela(sqLiteDatabase);
         onCreate(sqLiteDatabase);
     }
 }
