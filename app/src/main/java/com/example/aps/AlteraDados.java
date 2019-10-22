@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.aps.dao.LivroDAO;
 import com.example.crudud.R;
 
 
@@ -19,7 +20,7 @@ public class AlteraDados extends AppCompatActivity {
     Button alterar;
     Button deletar;
     Cursor cursor;
-    BancoController crud;
+    LivroDAO crud;
     String codigo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class AlteraDados extends AppCompatActivity {
 
         codigo = this.getIntent().getStringExtra("codigo");
 
-        crud = new BancoController(getBaseContext());
+        crud = new LivroDAO(getBaseContext());
 
         livro = (EditText)findViewById(R.id.fieldTitulo);
         autor = (EditText)findViewById(R.id.fieldAutor);

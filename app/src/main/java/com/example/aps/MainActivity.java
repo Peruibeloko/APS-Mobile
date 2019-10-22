@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aps.dao.LivroDAO;
 import com.example.crudud.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         botaoRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BancoController crud = new BancoController(getBaseContext());
+                LivroDAO crud = new LivroDAO(getBaseContext());
                 EditText titulo = (EditText) findViewById(R.id.fieldTitulo);
                 EditText autor = (EditText) findViewById((R.id.fieldAutor));
                 EditText editora = (EditText) findViewById(R.id.fieldEditora);
@@ -35,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 titulo.setText("");
                 autor.setText("");
                 editora.setText("");
-
-
             }
         });
         botaoConsulta.setOnClickListener(new View.OnClickListener() {

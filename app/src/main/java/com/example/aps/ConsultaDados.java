@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.example.aps.dao.LivroDAO;
 import com.example.crudud.R;
 
 public class ConsultaDados extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class ConsultaDados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta_dados);
-        BancoController crud = new BancoController(getBaseContext());
+        LivroDAO crud = new LivroDAO(getBaseContext());
             final Cursor cursor = crud.carregaDados();
         String[] nomeCampos = new String[]{CriaBanco.getID(), CriaBanco.getTITULO()};
         int[] idViews = new int[]{R.id.idLivro, R.id.nomeLivro};

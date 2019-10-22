@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.aps.models.CategoriaLeitor;
+import com.example.aps.models.CategoriaLivro;
+import com.example.aps.models.Cliente;
+import com.example.aps.models.Livro;
+
 public class CriaBanco extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "banco.db";
