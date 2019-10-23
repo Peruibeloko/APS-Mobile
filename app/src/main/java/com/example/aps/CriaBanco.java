@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.aps.models.CategoriaLeitor;
-import com.example.aps.models.CategoriaLivro;
-import com.example.aps.models.Cliente;
-import com.example.aps.models.Livro;
+import com.example.aps.categoriaLeitor.CategoriaLeitor;
+import com.example.aps.categoriaLivro.CategoriaLivro;
+import com.example.aps.cliente.Cliente;
+import com.example.aps.livro.Livro;
 
 public class CriaBanco extends SQLiteOpenHelper {
 

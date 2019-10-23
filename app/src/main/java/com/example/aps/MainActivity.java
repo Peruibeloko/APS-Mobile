@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aps.dao.LivroDAO;
+import com.example.aps.livro.ConsultaDadosLivro;
+import com.example.aps.livro.LivroDAO;
 import com.example.crudud.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,25 +24,13 @@ public class MainActivity extends AppCompatActivity {
         botaoRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LivroDAO crud = new LivroDAO(getBaseContext());
-                EditText titulo = (EditText) findViewById(R.id.fieldTitulo);
-                EditText autor = (EditText) findViewById((R.id.fieldAutor));
-                EditText editora = (EditText) findViewById(R.id.fieldEditora);
-                String tituloString = titulo.getText().toString();
-                String autorString = autor.getText().toString();
-                String editoraString = editora.getText().toString();
-                String resultado;
-                resultado = crud.insereDado(tituloString, autorString, editoraString);
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-                titulo.setText("");
-                autor.setText("");
-                editora.setText("");
+
             }
         });
         botaoConsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ConsultaDados.class);
+                Intent intent = new Intent(MainActivity.this, ConsultaDadosLivro.class);
                 startActivity(intent);
             }
         });

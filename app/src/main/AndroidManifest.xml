@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.aps.AlteraDados" />
-        <activity android:name="com.example.aps.ConsultaDados" />
+        <activity android:name="com.example.aps.livro.AlteraDadosLivro" />
+        <activity android:name="com.example.aps.livro.ConsultaDadosLivro" />
         <activity android:name="com.example.aps.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

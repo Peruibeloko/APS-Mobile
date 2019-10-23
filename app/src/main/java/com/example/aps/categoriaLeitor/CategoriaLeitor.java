@@ -1,9 +1,8 @@
-package com.example.aps.models;
+package com.example.aps.categoriaLeitor;
 
 import android.database.sqlite.SQLiteDatabase;
 
 public class CategoriaLeitor {
-    private static final String TABELA_CAT_LEITORES = "catLeitor";
 
     private int codigo;
     private int prazoDev; /* Prazo para devolucao */
@@ -14,8 +13,8 @@ public class CategoriaLeitor {
         this.descricao = descricao;
     }
 
-    public static String getTabelaCatLeitores() {
-        return TABELA_CAT_LEITORES;
+    public static String getTable() {
+        return "catLeitor";
     }
 
     public int getCodigo() {
@@ -32,7 +31,7 @@ public class CategoriaLeitor {
 
     public static void createTabela(SQLiteDatabase sqLiteDatabase) {
 
-        String sql = "CREATE TABLE " + TABELA_CAT_LEITORES + "(" +
+        String sql = "CREATE TABLE " + getTable() + "(" +
                 "codigo integer primary key autoincrement," +
                 "prazoDev integer," +
                 "descricao text " + ")";
@@ -42,6 +41,6 @@ public class CategoriaLeitor {
 
     public static void upgradeTabela(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABELA_CAT_LEITORES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + getTable());
     }
 }

@@ -1,11 +1,11 @@
-package com.example.aps.dao;
+package com.example.aps.livro;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.aps.CriaBanco;
-import com.example.aps.models.Livro;
 
 import java.lang.reflect.Field;
 
@@ -15,8 +15,8 @@ public class LivroDAO {
     private CriaBanco banco;
     private String table = Livro.getTable();
 
-    public LivroDAO(CriaBanco banco) {
-        this.banco = banco;
+    public LivroDAO(Context context) {
+        this.banco = new CriaBanco(context);
     }
 
     public String insereDado(Livro lv) {
@@ -49,7 +49,6 @@ public class LivroDAO {
 
         db = banco.getWritableDatabase();
 
-        valores.put("id", lv.getId());
         valores.put("codCat", lv.getCodCat());
         valores.put("edicao", lv.getEdicao());
         valores.put("paginas", lv.getPaginas());
@@ -64,8 +63,8 @@ public class LivroDAO {
         db.close();
     }
 
-    public Cursor carregaDados(Livro obj) {
-        Field[] fl = obj.getClass().getDeclaredFields();
+    public Cursor carregaDados() {
+        Field[] fl = Livro.class.getDeclaredFields();
         String[] campos = new String[fl.length];
 
         for(int i = 0; i < fl.length; i++){
@@ -83,8 +82,8 @@ public class LivroDAO {
         return cursor;
     }
 
-    public Cursor carregaDadoById(Livro obj, int id){
-        Field[] fl = obj.getClass().getDeclaredFields();
+    public Cursor carregaDadoById(int id){
+        Field[] fl = Livro.class.getDeclaredFields();
         String[] campos = new String[fl.length];
 
         for(int i = 0; i < fl.length; i++){

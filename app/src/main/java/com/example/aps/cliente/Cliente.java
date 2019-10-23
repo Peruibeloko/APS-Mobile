@@ -1,9 +1,8 @@
-package com.example.aps;
+package com.example.aps.cliente;
 
 import android.database.sqlite.SQLiteDatabase;
 
 public class Cliente {
-    private static final String TABELA_CLIENTES = "cliente";
 
     private int id;
     private int codCat;
@@ -24,8 +23,8 @@ public class Cliente {
         this.dtNascimento = dtNascimento;
     }
 
-    public static String getTabelaClientes() {
-        return TABELA_CLIENTES;
+    public static String getTable() {
+        return "cliente";
     }
 
     public int getId() {
@@ -62,7 +61,7 @@ public class Cliente {
 
     public static void createTabela(SQLiteDatabase sqLiteDatabase) {
 
-        String sql = "CREATE TABLE " + TABELA_CLIENTES + "(" +
+        String sql = "CREATE TABLE " + getTable() + "(" +
                 "id integer primary key autoincrement," +
                 "codCat integer," +
                 "nome text," +
@@ -77,6 +76,6 @@ public class Cliente {
 
     public static void upgradeTabela(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABELA_CLIENTES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + getTable());
     }
 }
