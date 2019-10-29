@@ -19,19 +19,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide(); 
         setContentView(R.layout.activity_main);
-        Button botaoRegistro = (Button) findViewById(R.id.btnCadastrar);
-        Button botaoConsulta = (Button) findViewById(R.id.btnConsultar);
-        botaoRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-        botaoConsulta.setOnClickListener(new View.OnClickListener() {
+        Button btnObras = (Button) findViewById(R.id.btnObras);
+        Button btnLeitores = (Button) findViewById(R.id.btnLeitores);
+
+        btnObras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ConsultaDadosLivro.class);
                 startActivity(intent);
+            }
+        });
+
+        btnLeitores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

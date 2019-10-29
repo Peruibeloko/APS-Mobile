@@ -1,6 +1,4 @@
-package com.example.aps.livro;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.aps.categoriaLivro;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,10 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.aps.cliente.CategoriaLivro;
+import com.example.aps.cliente.CategoriaLivroDAO;
 import com.example.crudud.R;
 
 
-public class AlteraDadosLivro extends AppCompatActivity {
+public class AlteraDadosCategoriaLivro extends AppCompatActivity {
 
     // Lista de campos da tela
     EditText titulo;
@@ -20,19 +22,19 @@ public class AlteraDadosLivro extends AppCompatActivity {
     Button alterar;
     Button deletar;
     Cursor cursor;
-    LivroDAO dao;
-    Livro obj;
+    CategoriaLivroDAO dao;
+    CategoriaLivro obj;
     String codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_altera_dados_livro);
+        setContentView(R.layout.activity_altera_dados_categoria_livro);
         codigo = this.getIntent().getStringExtra("codigo");
-        dao = new LivroDAO(getBaseContext());
+        dao = new CategoriaLivroDAO(getBaseContext());
         cursor = dao.carregaDadoById(Integer.parseInt(codigo));
-        obj = new Livro();
+        obj = new CategoriaLivro();
 
         // Um pra cada campo
         titulo = (EditText)findViewById(R.id.fieldTitulo);
@@ -54,17 +56,19 @@ public class AlteraDadosLivro extends AppCompatActivity {
             public void onClick(View v) {
                 dao.alteraRegistro(obj, Integer.parseInt(codigo));
 
-                Intent intent = new Intent(AlteraDadosLivro.this, ConsultaDadosLivro.class);
+                Intent intent = new Intent(AlteraDadosCategoriaLivro.this, ConsultaDadosCategoriaLivro.class);
                 startActivity(intent);
                 finish();
             }
         });
-        
+
+        //Código Antes
+        deletar = (Button)findViewById(R.id.btnDeletar);
         deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dao.deletaRegistro(Integer.parseInt(codigo));
-                Intent intent = new Intent(AlteraDadosLivro.this, ConsultaDadosLivro.class);
+                Intent intent = new Intent(AlteraDadosCategoriaLivro.this, ConsultaDadosCategoriaLivro.class);
                 startActivity(intent);
                 finish();
             }

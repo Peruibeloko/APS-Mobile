@@ -1,4 +1,4 @@
-package com.example.aps.livro;
+package com.example.aps.categoriaLeitor;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,30 +9,23 @@ import com.example.aps.CriaBanco;
 
 import java.lang.reflect.Field;
 
-public class LivroDAO {
+public class CategoriaLeitorDAO {
 
     private SQLiteDatabase db;
     private CriaBanco banco;
-    private String table = Livro.getTable();
+    private String table = CategoriaLeitor.getTable();
 
-    public LivroDAO(Context context) {
+    public CategoriaLeitorDAO(Context context) {
         this.banco = new CriaBanco(context);
     }
 
-    public String insereDado(Livro obj) {
+    public String insereDado(CategoriaLeitor obj) {
         ContentValues valores = new ContentValues();
         db = banco.getWritableDatabase();
 
-        valores.put("id", obj.getId());
-        valores.put("codCat", obj.getCodCat());
-        valores.put("edicao", obj.getEdicao());
-        valores.put("paginas", obj.getPaginas());
-        valores.put("dtPublicacao", obj.getDtPublicacao());
-        valores.put("isbn", obj.getIsbn());
-        valores.put("titulo", obj.getTitulo());
-        valores.put("autores", obj.getAutores());
-        valores.put("keywords", obj.getKeywords());
-        valores.put("editora", obj.getEditora());
+        valores.put("codigo", obj.getCodigo());
+        valores.put("prazoDev", obj.getPrazoDev());
+        valores.put("descricao", obj.getDescricao());
 
         long resultado = db.insert(table, null, valores);
         db.close();
@@ -43,38 +36,32 @@ public class LivroDAO {
             return "Registro Inserido com sucesso";
     }
 
-    public void alteraRegistro(Livro obj, int id){
+    public void alteraRegistro(CategoriaLeitor obj, int id) {
         ContentValues valores = new ContentValues();
         String where = "id = " + id;
 
         db = banco.getWritableDatabase();
 
-        valores.put("codCat", obj.getCodCat());
-        valores.put("edicao", obj.getEdicao());
-        valores.put("paginas", obj.getPaginas());
-        valores.put("dtPublicacao", obj.getDtPublicacao());
-        valores.put("isbn", obj.getIsbn());
-        valores.put("titulo", obj.getTitulo());
-        valores.put("autores", obj.getAutores());
-        valores.put("keywords", obj.getKeywords());
-        valores.put("editora", obj.getEditora());
+        valores.put("codigo", obj.getCodigo());
+        valores.put("prazoDev", obj.getPrazoDev());
+        valores.put("descricao", obj.getDescricao());
 
-        db.update(table, valores, where,null);
+        db.update(table, valores, where, null);
         db.close();
     }
 
     public Cursor carregaDados() {
-        Field[] fl = Livro.class.getDeclaredFields();
+        Field[] fl = CategoriaLeitor.class.getDeclaredFields();
         String[] campos = new String[fl.length];
 
-        for(int i = 0; i < fl.length; i++){
+        for (int i = 0; i < fl.length; i++) {
             campos[i] = fl[i].getName();
         }
 
         db = banco.getReadableDatabase();
         Cursor cursor = db.query(table, campos, null, null, null, null, null, null);
 
-        if(cursor != null){
+        if (cursor != null) {
             cursor.moveToFirst();
         }
 
@@ -82,11 +69,11 @@ public class LivroDAO {
         return cursor;
     }
 
-    public Cursor carregaDadoById(int id){
-        Field[] fl = Livro.class.getDeclaredFields();
+    public Cursor carregaDadoById(int id) {
+        Field[] fl = CategoriaLeitor.class.getDeclaredFields();
         String[] campos = new String[fl.length];
 
-        for(int i = 0; i < fl.length; i++){
+        for (int i = 0; i < fl.length; i++) {
             campos[i] = fl[i].getName();
         }
 
@@ -94,7 +81,7 @@ public class LivroDAO {
         db = banco.getReadableDatabase();
         Cursor cursor = db.query(table, campos, where, null, null, null, null, null);
 
-        if(cursor != null){
+        if (cursor != null) {
             cursor.moveToFirst();
         }
 
@@ -102,10 +89,10 @@ public class LivroDAO {
         return cursor;
     }
 
-    public void deletaRegistro(int id){
+    public void deletaRegistro(int id) {
         String where = "id = " + id;
         db = banco.getReadableDatabase();
-        db.delete(table, where,null);
+        db.delete(table, where, null);
         db.close();
     }
 }

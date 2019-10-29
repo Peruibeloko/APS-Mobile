@@ -8,9 +8,13 @@ public class CategoriaLeitor {
     private int prazoDev; /* Prazo para devolucao */
     private String descricao;
 
-    public CategoriaLeitor(int prazoDev, String descricao) {
+    public CategoriaLeitor(int codigo, int prazoDev, String descricao) {
+        this.codigo = codigo;
         this.prazoDev = prazoDev;
         this.descricao = descricao;
+    }
+
+    public CategoriaLeitor() {
     }
 
     public static String getTable() {
@@ -21,12 +25,24 @@ public class CategoriaLeitor {
         return codigo;
     }
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     public int getPrazoDev() {
         return prazoDev;
     }
 
+    public void setPrazoDev(int prazoDev) {
+        this.prazoDev = prazoDev;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public static void createTabela(SQLiteDatabase sqLiteDatabase) {

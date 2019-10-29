@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.example.aps.cliente.AlteraDadosCliente" />
         <activity android:name="com.example.aps.livro.AlteraDadosLivro" />
         <activity android:name="com.example.aps.livro.ConsultaDadosLivro" />
         <activity android:name="com.example.aps.MainActivity">
@@ -18,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.aps.cliente.ConsultaDadosCliente" />
+        <activity android:name="com.example.aps.categoriaLivro.AlteraDadosCliente" />
+        <activity android:name="com.example.aps.categoriaLivro.ConsultaDadosCategoriaLivro" />
+        <activity android:name="com.example.aps.categoriaLivro.AlteraDadosCategoriaLivro" />
+        <activity android:name="com.example.aps.categoriaLeitor.ConsultaDadosCategoriaLeitor" />
+        <activity android:name="com.example.aps.categoriaLeitor.AlteraDadosCategoriaLeitor" />
     </application>
 
 </manifest>

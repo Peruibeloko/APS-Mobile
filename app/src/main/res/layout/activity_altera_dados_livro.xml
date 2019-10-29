@@ -11,13 +11,11 @@
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txtTitle"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintEnd_toStartOf="@+id/fieldTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,95 +23,224 @@
         android:id="@+id/fieldTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtTitulo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:inputType=""
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+        app:layout_constraintStart_toEndOf="@+id/txtTitulo"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAutor"
+        android:id="@+id/txtAutores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldTitulo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txtAutor"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintEnd_toStartOf="@+id/fieldAutores"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldTitulo" />
 
     <EditText
-        android:id="@+id/fieldEditora"
+        android:id="@+id/fieldAutores"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtAutor"
-        android:layout_alignEnd="@+id/fieldTitulo"
-        android:layout_alignRight="@+id/fieldTitulo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldAutor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtAutores"
+        app:layout_constraintTop_toBottomOf="@+id/fieldTitulo" />
+
+    <TextView
+        android:id="@+id/txtCodCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtCodCatLivro"
+        app:layout_constraintEnd_toStartOf="@+id/fieldCodCat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditora" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldAutores" />
+
+    <EditText
+        android:id="@+id/fieldCodCat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldCodCatLivro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtCodCat"
+        app:layout_constraintTop_toBottomOf="@+id/fieldAutores" />
+
+    <TextView
+        android:id="@+id/txtEdicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtEdicao"
+        app:layout_constraintEnd_toStartOf="@+id/fieldEdicao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCodCat" />
+
+    <EditText
+        android:id="@+id/fieldEdicao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldEdicao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtEdicao"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCodCat" />
+
+    <TextView
+        android:id="@+id/txtPaginas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtPaginas"
+        app:layout_constraintEnd_toStartOf="@+id/fieldPaginas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldEdicao" />
+
+    <EditText
+        android:id="@+id/fieldPaginas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldPaginas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtPaginas"
+        app:layout_constraintTop_toBottomOf="@+id/fieldEdicao" />
+
+    <TextView
+        android:id="@+id/txtDtPublicacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtDtPublicacao"
+        app:layout_constraintEnd_toStartOf="@+id/fieldDtPublicacao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldPaginas" />
+
+    <EditText
+        android:id="@+id/fieldDtPublicacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldDtPublicacao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtDtPublicacao"
+        app:layout_constraintTop_toBottomOf="@+id/fieldPaginas" />
+
+    <TextView
+        android:id="@+id/txtIsbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtIsbn"
+        app:layout_constraintEnd_toStartOf="@+id/fieldIsbn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldDtPublicacao" />
+
+    <EditText
+        android:id="@+id/fieldIsbn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldIsbn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtIsbn"
+        app:layout_constraintTop_toBottomOf="@+id/fieldDtPublicacao" />
+
+    <TextView
+        android:id="@+id/txtKeywords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtKeywords"
+        app:layout_constraintEnd_toStartOf="@+id/fieldKeywords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldIsbn" />
+
+    <EditText
+        android:id="@+id/fieldKeywords"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldKeywords"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtKeywords"
+        app:layout_constraintTop_toBottomOf="@+id/fieldIsbn" />
 
     <TextView
         android:id="@+id/txtEditora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldEditora"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txtEditora"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintEnd_toStartOf="@+id/fieldEditora"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldAutor" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldKeywords" />
 
     <EditText
-        android:id="@+id/fieldAutor"
+        android:id="@+id/fieldEditora"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtEditora"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:inputType=""
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldEditora"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAutor" />
+        app:layout_constraintStart_toEndOf="@+id/txtEditora"
+        app:layout_constraintTop_toBottomOf="@+id/fieldKeywords" />
 
     <Button
         android:id="@+id/btnAlterar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldAutor"
-        android:layout_alignEnd="@+id/fieldAutor"
-        android:layout_alignRight="@+id/fieldAutor"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="200dp"
         android:text="@string/btnAlterar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeletar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldEditora" />
 
@@ -121,17 +248,12 @@
         android:id="@+id/btnDeletar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldAutor"
-        android:layout_alignEnd="@+id/fieldAutor"
-        android:layout_alignRight="@+id/fieldAutor"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/btnDeletar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAlterar"
         app:layout_constraintTop_toBottomOf="@+id/fieldEditora" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

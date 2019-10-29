@@ -1,4 +1,4 @@
-package com.example.aps.livro;
+package com.example.aps.cliente;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,20 +14,20 @@ import com.example.crudud.R;
 
 import java.lang.reflect.Field;
 
-public class ConsultaDadosLivro extends AppCompatActivity {
+public class ConsultaDadosCliente extends AppCompatActivity {
 
     private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consulta_dados_livro);
-        LivroDAO crud = new LivroDAO(getBaseContext());
+        setContentView(R.layout.activity_consulta_dados_cliente);
+        ClienteDAO crud = new ClienteDAO(getBaseContext());
         final Cursor cursor = crud.carregaDados();
-        String[] nomeCampos = new String[Livro.class.getDeclaredFields().length];
+        String[] nomeCampos = new String[Cliente.class.getDeclaredFields().length];
 
         int i = 0;
-        for (Field f : Livro.class.getDeclaredFields()){
+        for (Field f : Cliente.class.getDeclaredFields()){
 
             nomeCampos[i] = f.getName();
             i++;
@@ -36,7 +36,7 @@ public class ConsultaDadosLivro extends AppCompatActivity {
         int[] idViews = {R.id.idCliente, R.id.nomeCliente};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
-                R.layout.activity_consulta_dados_livro,
+                R.layout.activity_consulta_dados_cliente,
                 cursor, nomeCampos, idViews, 0
         );
 
@@ -51,7 +51,7 @@ public class ConsultaDadosLivro extends AppCompatActivity {
                         cursor.getColumnIndexOrThrow("id")
                 );
 
-                Intent intent = new Intent(ConsultaDadosLivro.this, AlteraDadosLivro.class);
+                Intent intent = new Intent(ConsultaDadosCliente.this, AlteraDadosCliente.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);
                 finish();

@@ -1,4 +1,4 @@
-package com.example.aps.livro;
+package com.example.aps.categoriaLivro;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,29 +14,29 @@ import com.example.crudud.R;
 
 import java.lang.reflect.Field;
 
-public class ConsultaDadosLivro extends AppCompatActivity {
+public class ConsultaDadosCategoriaLivro extends AppCompatActivity {
 
     private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consulta_dados_livro);
-        LivroDAO crud = new LivroDAO(getBaseContext());
+        setContentView(R.layout.activity_consulta_dados_categoria_livro);
+        CategoriaLivroDAO crud = new CategoriaLivroDAO(getBaseContext());
         final Cursor cursor = crud.carregaDados();
-        String[] nomeCampos = new String[Livro.class.getDeclaredFields().length];
+        String[] nomeCampos = new String[CategoriaLivro.class.getDeclaredFields().length];
 
         int i = 0;
-        for (Field f : Livro.class.getDeclaredFields()){
+        for (Field f : CategoriaLivro.class.getDeclaredFields()){
 
             nomeCampos[i] = f.getName();
             i++;
         }
 
-        int[] idViews = {R.id.idCliente, R.id.nomeCliente};
+        int[] idViews = {R.id.idCategoriaLivro, R.id.nomeCategoriaLivro};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
-                R.layout.activity_consulta_dados_livro,
+                R.layout.activity_consulta_dados_cliente,
                 cursor, nomeCampos, idViews, 0
         );
 
@@ -51,7 +51,7 @@ public class ConsultaDadosLivro extends AppCompatActivity {
                         cursor.getColumnIndexOrThrow("id")
                 );
 
-                Intent intent = new Intent(ConsultaDadosLivro.this, AlteraDadosLivro.class);
+                Intent intent = new Intent(ConsultaDadosCategoriaLivro.this, AlteraDadosCategoriaLivro.class);
                 intent.putExtra("codigo", codigo);
                 startActivity(intent);
                 finish();

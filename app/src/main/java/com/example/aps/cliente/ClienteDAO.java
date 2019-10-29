@@ -1,4 +1,4 @@
-package com.example.aps.livro;
+package com.example.aps.cliente;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,30 +9,28 @@ import com.example.aps.CriaBanco;
 
 import java.lang.reflect.Field;
 
-public class LivroDAO {
+public class ClienteDAO {
 
     private SQLiteDatabase db;
     private CriaBanco banco;
-    private String table = Livro.getTable();
+    private String table = Cliente.getTable();
 
-    public LivroDAO(Context context) {
+    public ClienteDAO(Context context) {
         this.banco = new CriaBanco(context);
     }
 
-    public String insereDado(Livro obj) {
+    public String insereDado(Cliente obj) {
         ContentValues valores = new ContentValues();
         db = banco.getWritableDatabase();
 
         valores.put("id", obj.getId());
         valores.put("codCat", obj.getCodCat());
-        valores.put("edicao", obj.getEdicao());
-        valores.put("paginas", obj.getPaginas());
-        valores.put("dtPublicacao", obj.getDtPublicacao());
-        valores.put("isbn", obj.getIsbn());
-        valores.put("titulo", obj.getTitulo());
-        valores.put("autores", obj.getAutores());
-        valores.put("keywords", obj.getKeywords());
-        valores.put("editora", obj.getEditora());
+        valores.put("nome", obj.getNome());
+        valores.put("endereco", obj.getEndereco());
+        valores.put("celular", obj.getCelular());
+        valores.put("email", obj.getEmail());
+        valores.put("cpf", obj.getCpf());
+        valores.put("dtNascimento", obj.getDtNascimento());
 
         long resultado = db.insert(table, null, valores);
         db.close();
@@ -43,28 +41,27 @@ public class LivroDAO {
             return "Registro Inserido com sucesso";
     }
 
-    public void alteraRegistro(Livro obj, int id){
+    public void alteraRegistro(Cliente obj, int id){
         ContentValues valores = new ContentValues();
         String where = "id = " + id;
 
         db = banco.getWritableDatabase();
 
+        valores.put("id", obj.getId());
         valores.put("codCat", obj.getCodCat());
-        valores.put("edicao", obj.getEdicao());
-        valores.put("paginas", obj.getPaginas());
-        valores.put("dtPublicacao", obj.getDtPublicacao());
-        valores.put("isbn", obj.getIsbn());
-        valores.put("titulo", obj.getTitulo());
-        valores.put("autores", obj.getAutores());
-        valores.put("keywords", obj.getKeywords());
-        valores.put("editora", obj.getEditora());
+        valores.put("nome", obj.getNome());
+        valores.put("endereco", obj.getEndereco());
+        valores.put("celular", obj.getCelular());
+        valores.put("email", obj.getEmail());
+        valores.put("cpf", obj.getCpf());
+        valores.put("dtNascimento", obj.getDtNascimento());
 
         db.update(table, valores, where,null);
         db.close();
     }
 
     public Cursor carregaDados() {
-        Field[] fl = Livro.class.getDeclaredFields();
+        Field[] fl = Cliente.class.getDeclaredFields();
         String[] campos = new String[fl.length];
 
         for(int i = 0; i < fl.length; i++){
@@ -83,7 +80,7 @@ public class LivroDAO {
     }
 
     public Cursor carregaDadoById(int id){
-        Field[] fl = Livro.class.getDeclaredFields();
+        Field[] fl = Cliente.class.getDeclaredFields();
         String[] campos = new String[fl.length];
 
         for(int i = 0; i < fl.length; i++){

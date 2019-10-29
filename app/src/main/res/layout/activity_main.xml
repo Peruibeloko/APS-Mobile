@@ -6,116 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.aps.MainActivity">
 
-    <EditText
-        android:id="@+id/fieldTitulo"
-        android:layout_width="322dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/fieldTitulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
-
-    <EditText
-        android:id="@+id/fieldAutor"
-        android:layout_width="328dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/fieldAutor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAutor" />
-
-    <EditText
-        android:id="@+id/fieldEditora"
-        android:layout_width="331dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/fieldEditora"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditora" />
-
     <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="149dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/btnCadastrar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldEditora"
-        app:layout_constraintVertical_bias="0.066" />
-
-    <Button
-        android:id="@+id/btnConsultar"
-        android:layout_width="160dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/btnConsultar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/btnObras"
+        android:layout_width="226dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="340dp"
+        android:text="@string/btnObras"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btnCadastrar"
-        app:layout_constraintTop_toBottomOf="@+id/fieldEditora"
-        app:layout_constraintVertical_bias="0.063" />
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/txtTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtAutor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+    <Button
+        android:id="@+id/btnLeitores"
+        android:layout_width="226dp"
+        android:layout_height="38dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/txtAutor"
+        android:text="@string/btnLeitores"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnObras" />
 
-    <TextView
-        android:id="@+id/txtEditora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/txtEditora"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldAutor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

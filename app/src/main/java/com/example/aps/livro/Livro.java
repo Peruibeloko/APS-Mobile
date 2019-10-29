@@ -16,7 +16,6 @@ public class Livro {
     private String editora;
 
     public Livro(){}
-
     public Livro(int id, int codCat, int edicao, int paginas, String dtPublicacao, String isbn, String titulo, String autores, String keywords, String editora) {
         this.id = id;
         this.codCat = codCat;
