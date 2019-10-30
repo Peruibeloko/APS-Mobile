@@ -16,9 +16,19 @@ public class AlteraDadosLivro extends AppCompatActivity {
 
     // Lista de campos da tela
     EditText titulo;
+    EditText autores;
+    EditText codCat;
+    EditText edicao;
+    EditText paginas;
+    EditText dtPublicacao;
+    EditText isbn;
+    EditText keywords;
+    EditText editora;
 
     Button alterar;
     Button deletar;
+    Button consultar;
+    Button cadastrar;
     Cursor cursor;
     LivroDAO dao;
     Livro obj;
@@ -28,6 +38,7 @@ public class AlteraDadosLivro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_altera_dados_livro);
         codigo = this.getIntent().getStringExtra("codigo");
         dao = new LivroDAO(getBaseContext());
@@ -46,24 +57,124 @@ public class AlteraDadosLivro extends AppCompatActivity {
             }
         });
 
-        alterar = (Button) findViewById(R.id.btnAlterar);
-        deletar = (Button) findViewById(R.id.btnDeletar);
+        autores = (EditText)findViewById(R.id.fieldAutores);
+        autores.setText(cursor.getString(cursor.getColumnIndexOrThrow("autores")));
+        autores.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setAutores(autores.getText().toString());
+                }
+            }
+        });
 
+        codCat = (EditText)findViewById(R.id.fieldCodCat);
+        codCat.setText(cursor.getString(cursor.getColumnIndexOrThrow("codCat")));
+        codCat.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setCodCat(Integer.parseInt(codCat.getText().toString()));
+                }
+            }
+        });
+
+        edicao = (EditText)findViewById(R.id.fieldEdicao);
+        edicao.setText(cursor.getString(cursor.getColumnIndexOrThrow("edicao")));
+        edicao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setEdicao(Integer.parseInt(edicao.getText().toString()));
+                }
+            }
+        });
+
+        paginas = (EditText)findViewById(R.id.fieldPaginas);
+        paginas.setText(cursor.getString(cursor.getColumnIndexOrThrow("paginas")));
+        paginas.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setPaginas(Integer.parseInt(paginas.getText().toString()));
+                }
+            }
+        });
+
+        dtPublicacao = (EditText)findViewById(R.id.fieldDtPublicacao);
+        dtPublicacao.setText(cursor.getString(cursor.getColumnIndexOrThrow("dtPublicacao")));
+        dtPublicacao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setDtPublicacao(dtPublicacao.getText().toString());
+                }
+            }
+        });
+
+        isbn = (EditText)findViewById(R.id.fieldIsbn);
+        isbn.setText(cursor.getString(cursor.getColumnIndexOrThrow("isbn")));
+        isbn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setIsbn(isbn.getText().toString());
+                }
+            }
+        });
+
+        keywords = (EditText)findViewById(R.id.fieldKeywords);
+        keywords.setText(cursor.getString(cursor.getColumnIndexOrThrow("keywords")));
+        keywords.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setKeywords(keywords.getText().toString());
+                }
+            }
+        });
+
+        editora = (EditText)findViewById(R.id.fieldEditora);
+        editora.setText(cursor.getString(cursor.getColumnIndexOrThrow("editora")));
+        editora.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    obj.setEditora(editora.getText().toString());
+                }
+            }
+        });
+
+        alterar = (Button) findViewById(R.id.btnAlterar);
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dao.alteraRegistro(obj, Integer.parseInt(codigo));
-
-                Intent intent = new Intent(AlteraDadosLivro.this, ConsultaDadosLivro.class);
-                startActivity(intent);
-                finish();
             }
         });
-        
+
+        deletar = (Button) findViewById(R.id.btnDeletar);
         deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dao.deletaRegistro(Integer.parseInt(codigo));
+                clearFields();
+            }
+        });
+
+        cadastrar = (Button) findViewById(R.id.btnCadastrar);
+        cadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dao.insereDado(obj);
+                clearFields();
+            }
+        });
+
+        consultar = (Button) findViewById(R.id.btnConsultar);
+        consultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(AlteraDadosLivro.this, ConsultaDadosLivro.class);
                 startActivity(intent);
                 finish();
@@ -71,5 +182,15 @@ public class AlteraDadosLivro extends AppCompatActivity {
         });
     }
 
-
+    private void clearFields(){
+        titulo.setText("");
+        autores.setText("");
+        codCat.setText("");
+        edicao.setText("");
+        paginas.setText("");
+        dtPublicacao.setText("");
+        isbn.setText("");
+        keywords.setText("");
+        editora.setText("");
+    }
 }

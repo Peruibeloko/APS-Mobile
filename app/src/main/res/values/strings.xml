@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">CRUDUD</string>
-
-    <!-- Livros -->
     <string name="txtTitle">Título</string>
     <string name="txtAutor">Autor</string>
     <string name="txtEditora">Editora</string>
@@ -11,7 +9,6 @@
     <string name="txtDtPublicacao">Data de Publicação</string>
     <string name="txtIsbn">ISBN</string>
     <string name="txtKeywords">Palavras Chave</string>
-
     <string name="fieldTitle"/>
     <string name="fieldAutor"/>
     <string name="fieldEditora"/>
@@ -21,8 +18,6 @@
     <string name="fieldDtPublicacao"/>
     <string name="fieldIsbn"/>
     <string name="fieldKeywords"/>
-
-    <!-- Clientes -->
     <string name="txtCodCatCliente">Categoria de Cliente</string>
     <string name="txtNome">Nome</string>
     <string name="txtEndereco">Endereco</string>
@@ -30,7 +25,6 @@
     <string name="txtEmail">Email</string>
     <string name="txtCpf">CPF</string>
     <string name="txtDtNascimento">Data de Nascimento</string>
-
     <string name="fieldCodCatCliente"/>
     <string name="fieldNome"/>
     <string name="fieldEndereco"/>
@@ -38,21 +32,14 @@
     <string name="fieldEmail"/>
     <string name="fieldCpf"/>
     <string name="fieldDtNascimento"/>
-
-    <!-- Categoria de Obras -->
     <string name="txtPrazoEmp">Prazo de Empréstimo</string>
     <string name="txtDescricao">Descrição</string>
     <string name="txtTaxaAtraso">Taxa de Atraso</string>
-
     <string name="fieldPrazoEmp"/>
     <string name="fieldDescricao"/>
     <string name="fieldTaxaAtraso"/>
-
-    <!-- Categoria de Clientes -->
     <string name="txtPrazoDev">Prazo para Devolução</string>
     <string name="fieldPrazoDev"/>
-
-    <!-- Botões -->
     <string name="btnCadastrar">Cadastrar</string>
     <string name="btnConsultar">Consultar</string>
     <string name="btnAlterar">Alterar</string>
