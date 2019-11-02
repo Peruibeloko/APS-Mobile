@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class Cliente {
 
-    private int id;
+    private int _id;
     private int codCat;
     private String nome;
     private String endereco;
@@ -15,8 +15,8 @@ public class Cliente {
 
     public Cliente() {
     }
-    public Cliente(int id, int codCat, String nome, String endereco, String celular, String email, String cpf, String dtNascimento) {
-        this.id = id;
+    public Cliente(int _id, int codCat, String nome, String endereco, String celular, String email, String cpf, String dtNascimento) {
+        this._id = _id;
         this.codCat = codCat;
         this.nome = nome;
         this.endereco = endereco;
@@ -31,10 +31,10 @@ public class Cliente {
     }
 
     public int getId() {
-        return id;
+        return _id;
     }
     public void setId(int id) {
-        this.id = id;
+        this._id = id;
     }
     public int getCodCat() {
         return codCat;
@@ -82,7 +82,7 @@ public class Cliente {
     public static void createTabela(SQLiteDatabase sqLiteDatabase) {
 
         String sql = "CREATE TABLE " + getTable() + "(" +
-                "id integer primary key autoincrement," +
+                "_id integer primary key autoincrement," +
                 "codCat integer," +
                 "nome text," +
                 "endereco text," +

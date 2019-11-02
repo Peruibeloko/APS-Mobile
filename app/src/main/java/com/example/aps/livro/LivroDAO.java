@@ -23,7 +23,6 @@ public class LivroDAO {
         ContentValues valores = new ContentValues();
         db = banco.getWritableDatabase();
 
-        valores.put("id", obj.getId());
         valores.put("codCat", obj.getCodCat());
         valores.put("edicao", obj.getEdicao());
         valores.put("paginas", obj.getPaginas());
@@ -45,7 +44,7 @@ public class LivroDAO {
 
     public void alteraRegistro(Livro obj, int id){
         ContentValues valores = new ContentValues();
-        String where = "id = " + id;
+        String where = "_id = " + id;
 
         db = banco.getWritableDatabase();
 
@@ -90,7 +89,7 @@ public class LivroDAO {
             campos[i] = fl[i].getName();
         }
 
-        String where = "id =" + id;
+        String where = "_id =" + id;
         db = banco.getReadableDatabase();
         Cursor cursor = db.query(table, campos, where, null, null, null, null, null);
 
@@ -103,7 +102,7 @@ public class LivroDAO {
     }
 
     public void deletaRegistro(int id){
-        String where = "id = " + id;
+        String where = "_id = " + id;
         db = banco.getReadableDatabase();
         db.delete(table, where,null);
         db.close();

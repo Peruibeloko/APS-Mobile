@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.crudud.R;
 
@@ -25,6 +26,8 @@ public class AlteraDadosLivro extends AppCompatActivity {
     EditText keywords;
     EditText editora;
 
+    TextView txtId;
+
     Button alterar;
     Button deletar;
     Button consultar;
@@ -34,121 +37,58 @@ public class AlteraDadosLivro extends AppCompatActivity {
     Livro obj;
     String codigo;
 
+    boolean hasExtra = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_altera_dados_livro);
-        codigo = this.getIntent().getStringExtra("codigo");
+        codigo = this.getIntent().getStringExtra("_id");
         dao = new LivroDAO(getBaseContext());
-        cursor = dao.carregaDadoById(Integer.parseInt(codigo));
+
+        try {
+            cursor = dao.carregaDadoById(Integer.parseInt(codigo));
+            hasExtra = true;
+        } catch (Exception e) {
+            System.err.println("Deu merda carregando os dados: \n\n");
+            e.printStackTrace();
+        }
+
         obj = new Livro();
 
-        // Um pra cada campo
-        titulo = (EditText)findViewById(R.id.fieldTitulo);
-        titulo.setText(cursor.getString(cursor.getColumnIndexOrThrow("titulo")));
-        titulo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setTitulo(titulo.getText().toString());
-                }
-            }
-        });
+        titulo = (EditText) findViewById(R.id.fieldTitulo);
+        autores = (EditText) findViewById(R.id.fieldAutores);
+        codCat = (EditText) findViewById(R.id.fieldCodCat);
+        edicao = (EditText) findViewById(R.id.fieldEdicao);
+        paginas = (EditText) findViewById(R.id.fieldPaginas);
+        dtPublicacao = (EditText) findViewById(R.id.fieldDtPublicacao);
+        isbn = (EditText) findViewById(R.id.fieldIsbn);
+        keywords = (EditText) findViewById(R.id.fieldKeywords);
+        editora = (EditText) findViewById(R.id.fieldEditora);
+        txtId = (TextView) findViewById(R.id.txtId);
 
-        autores = (EditText)findViewById(R.id.fieldAutores);
-        autores.setText(cursor.getString(cursor.getColumnIndexOrThrow("autores")));
-        autores.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setAutores(autores.getText().toString());
-                }
-            }
-        });
+        if (hasExtra) {
+            titulo.setText(cursor.getString(cursor.getColumnIndexOrThrow("titulo")));
+            autores.setText(cursor.getString(cursor.getColumnIndexOrThrow("autores")));
+            codCat.setText(cursor.getString(cursor.getColumnIndexOrThrow("codCat")));
+            edicao.setText(cursor.getString(cursor.getColumnIndexOrThrow("edicao")));
+            paginas.setText(cursor.getString(cursor.getColumnIndexOrThrow("paginas")));
+            dtPublicacao.setText(cursor.getString(cursor.getColumnIndexOrThrow("dtPublicacao")));
+            isbn.setText(cursor.getString(cursor.getColumnIndexOrThrow("isbn")));
+            keywords.setText(cursor.getString(cursor.getColumnIndexOrThrow("keywords")));
+            editora.setText(cursor.getString(cursor.getColumnIndexOrThrow("editora")));
+            txtId.setText(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
 
-        codCat = (EditText)findViewById(R.id.fieldCodCat);
-        codCat.setText(cursor.getString(cursor.getColumnIndexOrThrow("codCat")));
-        codCat.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setCodCat(Integer.parseInt(codCat.getText().toString()));
-                }
-            }
-        });
-
-        edicao = (EditText)findViewById(R.id.fieldEdicao);
-        edicao.setText(cursor.getString(cursor.getColumnIndexOrThrow("edicao")));
-        edicao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setEdicao(Integer.parseInt(edicao.getText().toString()));
-                }
-            }
-        });
-
-        paginas = (EditText)findViewById(R.id.fieldPaginas);
-        paginas.setText(cursor.getString(cursor.getColumnIndexOrThrow("paginas")));
-        paginas.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setPaginas(Integer.parseInt(paginas.getText().toString()));
-                }
-            }
-        });
-
-        dtPublicacao = (EditText)findViewById(R.id.fieldDtPublicacao);
-        dtPublicacao.setText(cursor.getString(cursor.getColumnIndexOrThrow("dtPublicacao")));
-        dtPublicacao.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setDtPublicacao(dtPublicacao.getText().toString());
-                }
-            }
-        });
-
-        isbn = (EditText)findViewById(R.id.fieldIsbn);
-        isbn.setText(cursor.getString(cursor.getColumnIndexOrThrow("isbn")));
-        isbn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setIsbn(isbn.getText().toString());
-                }
-            }
-        });
-
-        keywords = (EditText)findViewById(R.id.fieldKeywords);
-        keywords.setText(cursor.getString(cursor.getColumnIndexOrThrow("keywords")));
-        keywords.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setKeywords(keywords.getText().toString());
-                }
-            }
-        });
-
-        editora = (EditText)findViewById(R.id.fieldEditora);
-        editora.setText(cursor.getString(cursor.getColumnIndexOrThrow("editora")));
-        editora.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    obj.setEditora(editora.getText().toString());
-                }
-            }
-        });
+            updateObject();
+        }
 
         alterar = (Button) findViewById(R.id.btnAlterar);
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateObject();
                 dao.alteraRegistro(obj, Integer.parseInt(codigo));
             }
         });
@@ -166,6 +106,7 @@ public class AlteraDadosLivro extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateObject();
                 dao.insereDado(obj);
                 clearFields();
             }
@@ -182,7 +123,7 @@ public class AlteraDadosLivro extends AppCompatActivity {
         });
     }
 
-    private void clearFields(){
+    private void clearFields() {
         titulo.setText("");
         autores.setText("");
         codCat.setText("");
@@ -192,5 +133,17 @@ public class AlteraDadosLivro extends AppCompatActivity {
         isbn.setText("");
         keywords.setText("");
         editora.setText("");
+    }
+
+    private void updateObject() {
+        obj.setTitulo(titulo.getText().toString());
+        obj.setAutores(autores.getText().toString());
+        obj.setCodCat(Integer.parseInt(codCat.getText().toString()));
+        obj.setEdicao(Integer.parseInt(edicao.getText().toString()));
+        obj.setPaginas(Integer.parseInt(paginas.getText().toString()));
+        obj.setDtPublicacao(dtPublicacao.getText().toString());
+        obj.setIsbn(isbn.getText().toString());
+        obj.setKeywords(keywords.getText().toString());
+        obj.setEditora(editora.getText().toString());
     }
 }

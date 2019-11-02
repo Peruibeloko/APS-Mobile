@@ -48,11 +48,11 @@ public class ConsultaDadosCategoriaLeitor extends AppCompatActivity {
                 cursor.moveToPosition(position);
 
                 String codigo = cursor.getString(
-                        cursor.getColumnIndexOrThrow("id")
+                        cursor.getColumnIndexOrThrow("_id")
                 );
 
                 Intent intent = new Intent(ConsultaDadosCategoriaLeitor.this, AlteraDadosCategoriaLeitor.class);
-                intent.putExtra("codigo", codigo);
+                intent.putExtra("_id", codigo);
                 startActivity(intent);
                 finish();
             }

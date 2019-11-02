@@ -8,130 +8,235 @@
     tools:context="com.example.aps.cliente.AlteraDadosCliente">
 
     <TextView
-        android:id="@+id/txtTitulo"
+        android:id="@+id/txtNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/txtTitle"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtNome"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintEnd_toStartOf="@+id/fieldNome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/fieldTitulo"
+        android:id="@+id/fieldNome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtTitulo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:inputType=""
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/fieldNome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+        app:layout_constraintStart_toEndOf="@+id/txtNome"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAutor"
+        android:id="@+id/txtCodCat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldTitulo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/txtAutor"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtCodCatCliente"
+        app:layout_constraintEnd_toStartOf="@+id/fieldCodCat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldNome" />
 
     <EditText
-        android:id="@+id/fieldEditora"
+        android:id="@+id/fieldCodCat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtAutor"
-        android:layout_alignEnd="@+id/fieldTitulo"
-        android:layout_alignRight="@+id/fieldTitulo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/fieldCodCatCliente"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditora" />
+        app:layout_constraintStart_toEndOf="@+id/txtCodCat"
+        app:layout_constraintTop_toBottomOf="@+id/fieldNome" />
 
     <TextView
-        android:id="@+id/txtEditora"
+        android:id="@+id/txtEndereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldEditora"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/txtEditora"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtEndereco"
+        app:layout_constraintEnd_toStartOf="@+id/fieldEndereco"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldAutor" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldCodCat" />
 
     <EditText
-        android:id="@+id/fieldAutor"
+        android:id="@+id/fieldEndereco"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtEditora"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:inputType=""
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="@string/fieldEndereco"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtEndereco"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCodCat" />
+
+    <TextView
+        android:id="@+id/txtCelular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtCelular"
+        app:layout_constraintEnd_toStartOf="@+id/fieldCelular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAutor" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldEndereco" />
+
+    <EditText
+        android:id="@+id/fieldCelular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:text="@string/fieldCelular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtCelular"
+        app:layout_constraintTop_toBottomOf="@+id/fieldEndereco" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtEmail"
+        app:layout_constraintEnd_toStartOf="@+id/fieldEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCelular" />
+
+    <EditText
+        android:id="@+id/fieldEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="@string/fieldEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCelular" />
+
+    <TextView
+        android:id="@+id/txtCpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtCpf"
+        app:layout_constraintEnd_toStartOf="@+id/fieldCpf"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldEmail" />
+
+    <EditText
+        android:id="@+id/fieldCpf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/fieldCpf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtCpf"
+        app:layout_constraintTop_toBottomOf="@+id/fieldEmail" />
+
+    <TextView
+        android:id="@+id/txtDtNascimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtDtNascimento"
+        app:layout_constraintEnd_toStartOf="@+id/fieldDtNascimento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCpf" />
+
+    <EditText
+        android:id="@+id/fieldDtNascimento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="date"
+        android:text="@string/fieldDtNascimento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtDtNascimento"
+        app:layout_constraintTop_toBottomOf="@+id/fieldCpf" />
 
     <Button
         android:id="@+id/btnAlterar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldAutor"
-        android:layout_alignEnd="@+id/fieldAutor"
-        android:layout_alignRight="@+id/fieldAutor"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/btnAlterar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldEditora" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnDeletar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldAutor"
-        android:layout_alignEnd="@+id/fieldAutor"
-        android:layout_alignRight="@+id/fieldAutor"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/btnDeletar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnConsultar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btnConsultar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAlterar" />
+
+    <Button
+        android:id="@+id/btnCadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/btnCadastrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeletar"
+        app:layout_constraintStart_toEndOf="@+id/btnConsultar" />
+
+    <TextView
+        android:id="@+id/txtId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="179dp"
+        android:text="@string/txtId"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldEditora" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldDtNascimento" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

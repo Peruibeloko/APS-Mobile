@@ -23,7 +23,6 @@ public class ClienteDAO {
         ContentValues valores = new ContentValues();
         db = banco.getWritableDatabase();
 
-        valores.put("id", obj.getId());
         valores.put("codCat", obj.getCodCat());
         valores.put("nome", obj.getNome());
         valores.put("endereco", obj.getEndereco());
@@ -43,11 +42,10 @@ public class ClienteDAO {
 
     public void alteraRegistro(Cliente obj, int id){
         ContentValues valores = new ContentValues();
-        String where = "id = " + id;
+        String where = "_id = " + id;
 
         db = banco.getWritableDatabase();
 
-        valores.put("id", obj.getId());
         valores.put("codCat", obj.getCodCat());
         valores.put("nome", obj.getNome());
         valores.put("endereco", obj.getEndereco());
@@ -87,7 +85,7 @@ public class ClienteDAO {
             campos[i] = fl[i].getName();
         }
 
-        String where = "id =" + id;
+        String where = "_id =" + id;
         db = banco.getReadableDatabase();
         Cursor cursor = db.query(table, campos, where, null, null, null, null, null);
 
@@ -100,7 +98,7 @@ public class ClienteDAO {
     }
 
     public void deletaRegistro(int id){
-        String where = "id = " + id;
+        String where = "_id = " + id;
         db = banco.getReadableDatabase();
         db.delete(table, where,null);
         db.close();

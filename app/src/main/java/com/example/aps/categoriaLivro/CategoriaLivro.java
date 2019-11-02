@@ -4,13 +4,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class CategoriaLivro {
 
-    private int codigo;
+    private int _id;
     private int prazoEmp; /* Prazo de emprestimo */
     private String descricao;
     private double taxaAtraso;
 
-    public CategoriaLivro(int codigo, int prazoEmp, String descricao, double taxaAtraso) {
-        this.codigo = codigo;
+    public CategoriaLivro(int _id, int prazoEmp, String descricao, double taxaAtraso) {
+        this._id = _id;
         this.prazoEmp = prazoEmp;
         this.descricao = descricao;
         this.taxaAtraso = taxaAtraso;
@@ -24,11 +24,11 @@ public class CategoriaLivro {
     }
 
     public int getCodigo() {
-        return codigo;
+        return _id;
     }
 
     public void setCodigo(int codigo) {
-        this.codigo = codigo;
+        this._id = codigo;
     }
 
     public int getPrazoEmp() {
@@ -58,7 +58,7 @@ public class CategoriaLivro {
     public static void createTabela(SQLiteDatabase sqLiteDatabase) {
 
         String sql = "CREATE TABLE " + getTable() + "(" +
-                "codigo integer primary key autoincrement," +
+                "_id integer primary key autoincrement," +
                 "prazoEmp integer," +
                 "descricao text, " +
                 "taxaAtraso double " + ")";

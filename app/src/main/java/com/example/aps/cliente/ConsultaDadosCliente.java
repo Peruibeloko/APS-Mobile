@@ -24,16 +24,9 @@ public class ConsultaDadosCliente extends AppCompatActivity {
         setContentView(R.layout.activity_consulta_dados_cliente);
         ClienteDAO crud = new ClienteDAO(getBaseContext());
         final Cursor cursor = crud.carregaDados();
-        String[] nomeCampos = new String[Cliente.class.getDeclaredFields().length];
+        String[] nomeCampos = {"_id", "nome"};
 
-        int i = 0;
-        for (Field f : Cliente.class.getDeclaredFields()){
-
-            nomeCampos[i] = f.getName();
-            i++;
-        }
-
-        int[] idViews = {R.id.idCliente, R.id.nomeCliente};
+        int[] idViews = {R.id.clienteId, R.id.clienteNome};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
                 R.layout.activity_consulta_dados_cliente,
@@ -48,11 +41,11 @@ public class ConsultaDadosCliente extends AppCompatActivity {
                 cursor.moveToPosition(position);
 
                 String codigo = cursor.getString(
-                        cursor.getColumnIndexOrThrow("id")
+                        cursor.getColumnIndexOrThrow("_id")
                 );
 
                 Intent intent = new Intent(ConsultaDadosCliente.this, AlteraDadosCliente.class);
-                intent.putExtra("codigo", codigo);
+                intent.putExtra("_id", codigo);
                 startActivity(intent);
                 finish();
             }

@@ -46,4 +46,9 @@
     <string name="btnDeletar">Deletar</string>
     <string name="btnObras">Obras</string>
     <string name="btnLeitores">Leitores</string>
+    <string name="txtId" />
+    <string name="listTitulo" />
+    <string name="listId" />
+    <string name="livroAutores" />
+    <string name="listNome" />
 </resources>

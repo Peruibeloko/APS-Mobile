@@ -23,7 +23,6 @@ public class CategoriaLivroDAO {
         ContentValues valores = new ContentValues();
         db = banco.getWritableDatabase();
 
-        valores.put("codigo", obj.getCodigo());
         valores.put("prazoEmp", obj.getPrazoEmp());
         valores.put("descricao", obj.getDescricao());
         valores.put("taxaAtraso", obj.getTaxaAtraso());
@@ -39,11 +38,10 @@ public class CategoriaLivroDAO {
 
     public void alteraRegistro(CategoriaLivro obj, int id){
         ContentValues valores = new ContentValues();
-        String where = "id = " + id;
+        String where = "_id = " + id;
 
         db = banco.getWritableDatabase();
 
-        valores.put("codigo", obj.getCodigo());
         valores.put("prazoEmp", obj.getPrazoEmp());
         valores.put("descricao", obj.getDescricao());
         valores.put("taxaAtraso", obj.getTaxaAtraso());
@@ -79,7 +77,7 @@ public class CategoriaLivroDAO {
             campos[i] = fl[i].getName();
         }
 
-        String where = "id =" + id;
+        String where = "_id =" + id;
         db = banco.getReadableDatabase();
         Cursor cursor = db.query(table, campos, where, null, null, null, null, null);
 
@@ -92,7 +90,7 @@ public class CategoriaLivroDAO {
     }
 
     public void deletaRegistro(int id){
-        String where = "id = " + id;
+        String where = "_id = " + id;
         db = banco.getReadableDatabase();
         db.delete(table, where,null);
         db.close();
