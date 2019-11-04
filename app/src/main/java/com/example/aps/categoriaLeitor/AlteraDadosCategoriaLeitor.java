@@ -19,8 +19,6 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
     EditText prazoDev;
     EditText descricao;
 
-    TextView txtId;
-
     Button alterar;
     Button deletar;
     Button consultar;
@@ -36,7 +34,7 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consulta_dados_categoria_leitor);
+        setContentView(R.layout.activity_altera_dados_categoria_leitor);
         codigo = this.getIntent().getStringExtra("_id");
         dao = new CategoriaLeitorDAO(getBaseContext());
         obj = new CategoriaLeitor();
@@ -55,7 +53,6 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
         if (hasExtra){
             prazoDev.setText(cursor.getString(cursor.getColumnIndexOrThrow("prazoDev")));
             descricao.setText(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
-            txtId.setText(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
 
             updateObject();
         }

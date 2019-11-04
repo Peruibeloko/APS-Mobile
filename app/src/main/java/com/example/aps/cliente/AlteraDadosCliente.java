@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aps.categoriaLeitor.AlteraDadosCategoriaLeitor;
+import com.example.aps.categoriaLeitor.CategoriaLeitor;
+import com.example.aps.categoriaLeitor.CategoriaLeitorDAO;
 import com.example.crudud.R;
 
 
@@ -17,23 +22,84 @@ public class AlteraDadosCliente extends AppCompatActivity {
 
     // Lista de campos da tela
     EditText nome;
-    EditText codCat;
+    Spinner codCat;
     EditText endereco;
     EditText celular;
     EditText email;
     EditText cpf;
     EditText dtNascimento;
 
+    CatClienteAdapter spinAdapter;
+    CategoriaLeitor[] catList;
+
+    Button btnCodCat;
     Button alterar;
     Button deletar;
     Button consultar;
     Button cadastrar;
-    Cursor cursor;
-    ClienteDAO dao;
-    Cliente obj;
+    Cursor cursorCliente;
+    Cursor cursorCat;
+    ClienteDAO daoCliente;
+    CategoriaLeitorDAO daoCat;
+    Cliente obj = new Cliente();;
+
     String codigo;
 
     boolean hasExtra = false;
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        OnItemSelectedListener listener = new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CategoriaLeitor cat = (CategoriaLeitor) parent.getItemAtPosition(position);
+                obj.setCodCat(cat.getCodigo());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        };
+
+        try {
+            codCat = (Spinner) findViewById(R.id.fieldCodCat);
+            daoCat = new CategoriaLeitorDAO(getBaseContext());
+            cursorCat = daoCat.carregaDados();
+            catList = new CategoriaLeitor[cursorCat.getCount()];
+
+            System.out.println("COMPRIMENTO: " + catList.length);
+
+            int i = 0;
+
+            do {
+                catList[i] = new CategoriaLeitor(
+                        cursorCat.getInt(cursorCat.getColumnIndexOrThrow("_id")),
+                        cursorCat.getInt(cursorCat.getColumnIndexOrThrow("prazoDev")),
+                        cursorCat.getString(cursorCat.getColumnIndexOrThrow("descricao"))
+                );
+                System.out.println(catList[i].getDescricao());
+                i++;
+            } while (cursorCat.moveToNext());
+
+            spinAdapter = new CatClienteAdapter(AlteraDadosCliente.this, android.R.layout.simple_spinner_item, catList);
+            codCat.setAdapter(spinAdapter);
+            codCat.setOnItemSelectedListener(listener);
+
+            if (hasExtra) {
+
+                int pos = spinAdapter.getPosition(cursorCliente.getInt(cursorCliente.getColumnIndexOrThrow("codCat")));
+                codCat.setSelection(pos);
+            }
+
+        } catch (Exception e) {
+
+            System.err.println("Deu merda carregando as categorias: \n\n");
+            e.printStackTrace();
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +107,10 @@ public class AlteraDadosCliente extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_altera_dados_cliente);
         codigo = this.getIntent().getStringExtra("_id");
-        dao = new ClienteDAO(getBaseContext());
-        obj = new Cliente();
+        daoCliente = new ClienteDAO(getBaseContext());
 
         try {
-            cursor = dao.carregaDadoById(Integer.parseInt(codigo));
+            cursorCliente = daoCliente.carregaDadoById(Integer.parseInt(codigo));
             hasExtra = true;
         } catch (Exception e) {
             System.err.println("Deu merda carregando os dados: \n\n");
@@ -53,7 +118,6 @@ public class AlteraDadosCliente extends AppCompatActivity {
         }
 
         nome = (EditText) findViewById(R.id.fieldNome);
-        codCat = (EditText) findViewById(R.id.fieldCodCat);
         endereco = (EditText) findViewById(R.id.fieldEndereco);
         celular = (EditText) findViewById(R.id.fieldCelular);
         email = (EditText) findViewById(R.id.fieldEmail);
@@ -61,23 +125,31 @@ public class AlteraDadosCliente extends AppCompatActivity {
         dtNascimento = (EditText) findViewById(R.id.fieldDtNascimento);
 
         if (hasExtra) {
-            nome.setText(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
-            codCat.setText(cursor.getString(cursor.getColumnIndexOrThrow("codCat")));
-            endereco.setText(cursor.getString(cursor.getColumnIndexOrThrow("endereco")));
-            celular.setText(cursor.getString(cursor.getColumnIndexOrThrow("celular")));
-            email.setText(cursor.getString(cursor.getColumnIndexOrThrow("email")));
-            cpf.setText(cursor.getString(cursor.getColumnIndexOrThrow("cpf")));
-            dtNascimento.setText(cursor.getString(cursor.getColumnIndexOrThrow("dtNascimento")));
+            nome.setText(cursorCliente.getString(cursorCliente.getColumnIndexOrThrow("nome")));
+            endereco.setText(cursorCliente.getString(cursorCliente.getColumnIndexOrThrow("endereco")));
+            celular.setText(cursorCliente.getString(cursorCliente.getColumnIndexOrThrow("celular")));
+            email.setText(cursorCliente.getString(cursorCliente.getColumnIndexOrThrow("email")));
+            cpf.setText(cursorCliente.getString(cursorCliente.getColumnIndexOrThrow("cpf")));
+            dtNascimento.setText(cursorCliente.getString(cursorCliente.getColumnIndexOrThrow("dtNascimento")));
 
             updateObject();
         }
+
+        btnCodCat = (Button) findViewById(R.id.btnCodCat);
+        btnCodCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlteraDadosCliente.this, AlteraDadosCategoriaLeitor.class);
+                startActivity(intent);
+            }
+        });
 
         alterar = (Button) findViewById(R.id.btnAlterar);
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateObject();
-                dao.alteraRegistro(obj, Integer.parseInt(codigo));
+                daoCliente.alteraRegistro(obj, Integer.parseInt(codigo));
             }
         });
 
@@ -85,7 +157,7 @@ public class AlteraDadosCliente extends AppCompatActivity {
         deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dao.deletaRegistro(Integer.parseInt(codigo));
+                daoCliente.deletaRegistro(Integer.parseInt(codigo));
                 clearFields();
             }
         });
@@ -95,7 +167,7 @@ public class AlteraDadosCliente extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateObject();
-                dao.insereDado(obj);
+                daoCliente.insereDado(obj);
                 clearFields();
             }
         });
@@ -113,7 +185,6 @@ public class AlteraDadosCliente extends AppCompatActivity {
 
     private void clearFields() {
         nome.setText("");
-        codCat.setText("");
         endereco.setText("");
         celular.setText("");
         email.setText("");
@@ -123,7 +194,6 @@ public class AlteraDadosCliente extends AppCompatActivity {
 
     private void updateObject() {
         obj.setNome(nome.getText().toString());
-        obj.setCodCat(Integer.parseInt(codCat.getText().toString()));
         obj.setEndereco(endereco.getText().toString());
         obj.setCelular(celular.getText().toString());
         obj.setEmail(email.getText().toString());

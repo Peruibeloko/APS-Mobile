@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.*;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -62,7 +62,6 @@ public class AlteraDadosLivro extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-
         };
 
         try {
@@ -90,14 +89,17 @@ public class AlteraDadosLivro extends AppCompatActivity {
             codCat.setAdapter(spinAdapter);
             codCat.setOnItemSelectedListener(listener);
 
+            if (hasExtra) {
+
+                int pos = spinAdapter.getPosition(cursorLivro.getInt(cursorLivro.getColumnIndexOrThrow("codCat")));
+                codCat.setSelection(pos);
+            }
+
         } catch (Exception e) {
 
             System.err.println("Deu merda carregando as categorias: \n\n");
             e.printStackTrace();
 
-        } finally {
-
-            cursorCat.close();
         }
     }
 
@@ -108,7 +110,6 @@ public class AlteraDadosLivro extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_altera_dados_livro);
         codigo = this.getIntent().getStringExtra("_id");
-
         daoLivro = new LivroDAO(getBaseContext());
 
         try {
@@ -118,8 +119,6 @@ public class AlteraDadosLivro extends AppCompatActivity {
             System.err.println("Deu merda carregando os dados: \n\n");
             e.printStackTrace();
         }
-
-
 
         titulo = (EditText) findViewById(R.id.fieldTitulo);
         autores = (EditText) findViewById(R.id.fieldAutores);
@@ -139,7 +138,6 @@ public class AlteraDadosLivro extends AppCompatActivity {
             isbn.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("isbn")));
             keywords.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("keywords")));
             editora.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("editora")));
-            cursorLivro.close();
 
             updateObject();
         }
