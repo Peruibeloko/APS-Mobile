@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,8 +18,6 @@ public class AlteraDadosCategoriaLivro extends AppCompatActivity {
     EditText prazoEmp;
     EditText descricao;
     EditText taxaAtraso;
-
-    TextView txtId;
 
     Button alterar;
     Button deletar;
@@ -50,16 +47,14 @@ public class AlteraDadosCategoriaLivro extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        prazoEmp = (EditText) findViewById(R.id.fieldPrazoDev);
+        prazoEmp = (EditText) findViewById(R.id.fieldPrazoEmp);
         descricao = (EditText) findViewById(R.id.fieldDescricao);
         taxaAtraso = (EditText) findViewById(R.id.fieldTaxaAtraso);
-        txtId = (TextView) findViewById(R.id.txtId);
 
         if (hasExtra) {
             prazoEmp.setText(cursor.getString(cursor.getColumnIndexOrThrow("prazoEmp")));
             descricao.setText(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
             taxaAtraso.setText(cursor.getString(cursor.getColumnIndexOrThrow("taxaAtraso")));
-            txtId.setText(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
 
             updateObject();
         }

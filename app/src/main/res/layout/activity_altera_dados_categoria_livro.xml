@@ -13,8 +13,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/txtPrazoEmp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        app:layout_constraintEnd_toStartOf="@+id/fieldPrazoEmp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,8 +27,8 @@
         android:inputType="number"
         android:text="@string/fieldPrazoEmp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtPrazoEmp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPrazoEmp" />
 
     <TextView
         android:id="@+id/txtDescricao"
@@ -39,7 +37,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/txtDescricao"
-        app:layout_constraintEnd_toStartOf="@+id/fieldDescricao"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldPrazoEmp" />
 
@@ -54,8 +51,8 @@
         android:inputType="text"
         android:text="@string/fieldDescricao"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtDescricao"
-        app:layout_constraintTop_toBottomOf="@+id/fieldPrazoEmp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescricao" />
 
     <TextView
         android:id="@+id/txtTaxaAtraso"
@@ -64,7 +61,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/txtTaxaAtraso"
-        app:layout_constraintEnd_toStartOf="@+id/fieldDescricao"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldDescricao" />
 
@@ -79,8 +75,8 @@
         android:inputType="numberDecimal"
         android:text="@string/fieldTaxaAtraso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtDescricao"
-        app:layout_constraintTop_toBottomOf="@+id/fieldDescricao" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaxaAtraso" />
 
     <Button
         android:id="@+id/btnAlterar"
@@ -123,19 +119,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDeletar"
         app:layout_constraintStart_toEndOf="@+id/btnConsultar" />
-
-    <TextView
-        android:id="@+id/txtId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="179dp"
-        android:text="@string/txtId"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldTaxaAtraso" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

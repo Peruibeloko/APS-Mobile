@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.crudud.R;
 
-import java.lang.reflect.Field;
-
 public class ConsultaDadosCategoriaLivro extends AppCompatActivity {
 
     private ListView lista;
@@ -24,19 +22,12 @@ public class ConsultaDadosCategoriaLivro extends AppCompatActivity {
         setContentView(R.layout.activity_consulta_dados_categoria_livro);
         CategoriaLivroDAO crud = new CategoriaLivroDAO(getBaseContext());
         final Cursor cursor = crud.carregaDados();
-        String[] nomeCampos = new String[CategoriaLivro.class.getDeclaredFields().length];
+        String[] nomeCampos = {"_id", "descricao"};
 
-        int i = 0;
-        for (Field f : CategoriaLivro.class.getDeclaredFields()){
-
-            nomeCampos[i] = f.getName();
-            i++;
-        }
-
-        int[] idViews = {R.id.idCategoriaLivro, R.id.nomeCategoriaLivro};
+        int[] idViews = {R.id.catId, R.id.catDescricao};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
-                R.layout.activity_consulta_dados_cliente,
+                R.layout.activity_consulta_dados_categoria_livro,
                 cursor, nomeCampos, idViews, 0
         );
 

@@ -24,8 +24,6 @@ public class AlteraDadosCliente extends AppCompatActivity {
     EditText cpf;
     EditText dtNascimento;
 
-    TextView txtId;
-
     Button alterar;
     Button deletar;
     Button consultar;
@@ -61,7 +59,6 @@ public class AlteraDadosCliente extends AppCompatActivity {
         email = (EditText) findViewById(R.id.fieldEmail);
         cpf = (EditText) findViewById(R.id.fieldCpf);
         dtNascimento = (EditText) findViewById(R.id.fieldDtNascimento);
-        txtId = (TextView) findViewById(R.id.txtId);
 
         if (hasExtra) {
             nome.setText(cursor.getString(cursor.getColumnIndexOrThrow("nome")));
@@ -71,7 +68,6 @@ public class AlteraDadosCliente extends AppCompatActivity {
             email.setText(cursor.getString(cursor.getColumnIndexOrThrow("email")));
             cpf.setText(cursor.getString(cursor.getColumnIndexOrThrow("cpf")));
             dtNascimento.setText(cursor.getString(cursor.getColumnIndexOrThrow("dtNascimento")));
-            txtId.setText(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
 
             updateObject();
         }
