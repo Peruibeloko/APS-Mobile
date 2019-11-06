@@ -9,20 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.aps.livro.DevolveLivro"></activity>
+        <activity
+            android:name="com.example.aps.login.ui.login.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.aps.livro.DevolveLivro" />
         <activity android:name="com.example.aps.livro.EmprestaLivro" />
         <activity android:name="com.example.aps.livro.FiltraConsultaLivro" />
         <activity android:name="com.example.aps.livro.ConsultaLivroEmprestado" />
         <activity android:name="com.example.aps.cliente.AlteraCliente" />
         <activity android:name="com.example.aps.livro.AlteraLivro" />
         <activity android:name="com.example.aps.livro.ConsultaLivroAcervo" />
-        <activity android:name="com.example.aps.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="com.example.aps.MainActivity"></activity>
         <activity android:name="com.example.aps.cliente.ConsultaCliente" />
         <activity android:name="com.example.aps.categoriaLivro.ConsultaCategoriaLivro" />
         <activity android:name="com.example.aps.categoriaLivro.AlteraCategoriaLivro" />
