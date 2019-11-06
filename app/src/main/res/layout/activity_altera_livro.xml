@@ -5,11 +5,23 @@
     android:id="@+id/Alter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aps.cliente.AlteraDadosCliente">
+    tools:context="com.example.aps.livro.AlteraLivro">
+
+    <Button
+        android:id="@+id/btnEmprestar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/btnEmprestar"
+        app:layout_constraintBottom_toTopOf="@+id/btnAlterar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAlterar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
@@ -19,7 +31,7 @@
 
     <Button
         android:id="@+id/btnDeletar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
@@ -29,7 +41,7 @@
 
     <Button
         android:id="@+id/btnConsultar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
@@ -50,11 +62,13 @@
         app:layout_constraintStart_toEndOf="@+id/btnConsultar" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEmprestar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -64,15 +78,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtNome"
+                android:id="@+id/txtTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtNome" />
+                android:text="@string/txtTitle" />
 
             <EditText
-                android:id="@+id/fieldNome"
+                android:id="@+id/fieldTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -80,7 +94,26 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/fieldNome" />
+                android:text="@string/fieldTitle" />
+
+            <TextView
+                android:id="@+id/txtAutores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtAutor" />
+
+            <EditText
+                android:id="@+id/fieldAutores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/fieldAutor" />
 
             <TextView
                 android:id="@+id/txtCodCat"
@@ -88,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtCodCatCliente" />
+                android:text="@string/txtCodCatLivro" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -97,92 +130,37 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp">
 
+                <Button
+                    android:id="@+id/btnCodCat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/btnCadastrar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <Spinner
                     android:id="@+id/fieldCodCat"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnCodCat"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/btnCodCat"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/btnCadastrar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/txtEndereco"
+                android:id="@+id/txtEdicao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtEndereco" />
+                android:text="@string/txtEdicao" />
 
             <EditText
-                android:id="@+id/fieldEndereco"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="textPostalAddress"
-                android:text="@string/fieldEndereco" />
-
-            <TextView
-                android:id="@+id/txtCelular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtCelular" />
-
-            <EditText
-                android:id="@+id/fieldCelular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="phone"
-                android:text="@string/fieldCelular" />
-
-            <TextView
-                android:id="@+id/txtEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtEmail" />
-
-            <EditText
-                android:id="@+id/fieldEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:text="@string/fieldEmail" />
-
-            <TextView
-                android:id="@+id/txtCpf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtCpf" />
-
-            <EditText
-                android:id="@+id/fieldCpf"
+                android:id="@+id/fieldEdicao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -190,18 +168,37 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="number"
-                android:text="@string/fieldCpf" />
+                android:text="@string/fieldEdicao" />
 
             <TextView
-                android:id="@+id/txtDtNascimento"
+                android:id="@+id/txtPaginas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtDtNascimento" />
+                android:text="@string/txtPaginas" />
 
             <EditText
-                android:id="@+id/fieldDtNascimento"
+                android:id="@+id/fieldPaginas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="number"
+                android:text="@string/fieldPaginas" />
+
+            <TextView
+                android:id="@+id/txtDtPublicacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtDtPublicacao" />
+
+            <EditText
+                android:id="@+id/fieldDtPublicacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -209,7 +206,65 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="date"
-                android:text="@string/fieldDtNascimento" />
+                android:text="@string/fieldDtPublicacao" />
+
+            <TextView
+                android:id="@+id/txtIsbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtIsbn" />
+
+            <EditText
+                android:id="@+id/fieldIsbn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="number"
+                android:text="@string/fieldIsbn" />
+
+            <TextView
+                android:id="@+id/txtKeywords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtKeywords" />
+
+            <EditText
+                android:id="@+id/fieldKeywords"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/fieldKeywords" />
+
+            <TextView
+                android:id="@+id/txtEditora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtEditora" />
+
+            <EditText
+                android:id="@+id/fieldEditora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/fieldEditora" />
+
         </LinearLayout>
     </ScrollView>
 

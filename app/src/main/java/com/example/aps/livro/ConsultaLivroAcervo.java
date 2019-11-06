@@ -12,22 +12,45 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.crudud.R;
 
-public class ConsultaDadosLivro extends AppCompatActivity {
+public class ConsultaLivroAcervo extends AppCompatActivity {
 
     private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consulta_dados_livro);
+        setContentView(R.layout.activity_consulta_livro_acervo);
         LivroDAO crud = new LivroDAO(getBaseContext());
-        final Cursor cursor = crud.carregaDados();
-        String[] nomeCampos = {"_id", "titulo", "autores"};
+        final Cursor cursor;
 
+        String[] filtro = this.getIntent().getStringArrayExtra("filtro");
+        StringBuilder where = new StringBuilder();
+
+        if (filtro != null) {
+
+            if (!filtro[0].equals("")) {
+                where.append("titulo LIKE '%").append(filtro[0]).append("%'");
+                if (!filtro[1].equals(""))
+                    where.append(" AND ");
+            }
+            if (!filtro[1].equals("")) {
+                where.append("autores LIKE '%").append(filtro[1]).append("%'");
+                if (!filtro[2].equals(""))
+                    where.append(" AND ");
+            }
+            if (!filtro[2].equals("")) {
+                where.append("editora LIKE '%").append(filtro[2]).append("%' ");
+            }
+
+            cursor = crud.carregaDados(where.toString());
+
+        } else cursor = crud.carregaDados();
+
+        String[] nomeCampos = {"_id", "titulo", "autores"};
         int[] idViews = {R.id.livroId, R.id.livroNome, R.id.livroAutores};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
-                R.layout.activity_consulta_dados_livro,
+                R.layout.activity_consulta_livro_acervo,
                 cursor, nomeCampos, idViews, 0
         );
 
@@ -38,11 +61,11 @@ public class ConsultaDadosLivro extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cursor.moveToPosition(position);
 
-                String codigo = cursor.getString(
+                int codigo = cursor.getInt(
                         cursor.getColumnIndexOrThrow("_id")
                 );
 
-                Intent intent = new Intent(ConsultaDadosLivro.this, AlteraDadosLivro.class);
+                Intent intent = new Intent(ConsultaLivroAcervo.this, AlteraLivro.class);
                 intent.putExtra("_id", codigo);
                 startActivity(intent);
                 finish();

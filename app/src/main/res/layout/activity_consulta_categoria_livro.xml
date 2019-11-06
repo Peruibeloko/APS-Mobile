@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aps.categoriaLeitor.AlteraDadosCategoriaLeitor">
+    tools:context="com.example.aps.categoriaLivro.ConsultaCategoriaLivro">
 
     <ListView
         android:id="@+id/listView"
@@ -43,7 +43,6 @@
             android:id="@+id/catDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"

@@ -1,4 +1,4 @@
-package com.example.aps.categoriaLeitor;
+package com.example.aps.categoriaLivro;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,22 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.crudud.R;
 
-public class ConsultaDadosCategoriaLeitor extends AppCompatActivity {
+public class ConsultaCategoriaLivro extends AppCompatActivity {
 
     private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consulta_dados_categoria_leitor);
-        CategoriaLeitorDAO crud = new CategoriaLeitorDAO(getBaseContext());
+        setContentView(R.layout.activity_consulta_categoria_livro);
+        CategoriaLivroDAO crud = new CategoriaLivroDAO(getBaseContext());
         final Cursor cursor = crud.carregaDados();
         String[] nomeCampos = {"_id", "descricao"};
 
         int[] idViews = {R.id.catId, R.id.catDescricao};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
-                R.layout.activity_consulta_dados_categoria_leitor,
+                R.layout.activity_consulta_categoria_livro,
                 cursor, nomeCampos, idViews, 0
         );
 
@@ -42,7 +42,7 @@ public class ConsultaDadosCategoriaLeitor extends AppCompatActivity {
                         cursor.getColumnIndexOrThrow("_id")
                 );
 
-                Intent intent = new Intent(ConsultaDadosCategoriaLeitor.this, AlteraDadosCategoriaLeitor.class);
+                Intent intent = new Intent(ConsultaCategoriaLivro.this, AlteraCategoriaLivro.class);
                 intent.putExtra("_id", codigo);
                 startActivity(intent);
                 finish();

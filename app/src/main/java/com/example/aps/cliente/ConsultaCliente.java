@@ -12,16 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.crudud.R;
 
-import java.lang.reflect.Field;
-
-public class ConsultaDadosCliente extends AppCompatActivity {
+public class ConsultaCliente extends AppCompatActivity {
 
     private ListView lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consulta_dados_cliente);
+        setContentView(R.layout.activity_consulta_cliente);
         ClienteDAO crud = new ClienteDAO(getBaseContext());
         final Cursor cursor = crud.carregaDados();
         String[] nomeCampos = {"_id", "nome"};
@@ -29,7 +27,7 @@ public class ConsultaDadosCliente extends AppCompatActivity {
         int[] idViews = {R.id.clienteId, R.id.clienteNome};
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(
                 getBaseContext(),
-                R.layout.activity_consulta_dados_cliente,
+                R.layout.activity_consulta_cliente,
                 cursor, nomeCampos, idViews, 0
         );
 
@@ -44,7 +42,7 @@ public class ConsultaDadosCliente extends AppCompatActivity {
                         cursor.getColumnIndexOrThrow("_id")
                 );
 
-                Intent intent = new Intent(ConsultaDadosCliente.this, AlteraDadosCliente.class);
+                Intent intent = new Intent(ConsultaCliente.this, AlteraCliente.class);
                 intent.putExtra("_id", codigo);
                 startActivity(intent);
                 finish();

@@ -8,6 +8,9 @@ public class Livro {
     private int codCat;
     private int edicao;
     private int paginas;
+    private int cliente;
+    private String dtSaida;
+    private String dtRetorno;
     private String dtPublicacao;
     private String isbn;
     private String titulo;
@@ -122,12 +125,15 @@ public class Livro {
                 "codCat integer," +
                 "edicao integer," +
                 "paginas integer," +
+                "dtSaida text," +
+                "dtRetorno text," +
                 "dtPublicacao text," +
                 "isbn text," +
                 "titulo text," +
                 "autores text," +
                 "keywords text," +
-                "editora text)";
+                "editora text, " +
+                "cliente integer)";
 
         sqLiteDatabase.execSQL(sql);
     }

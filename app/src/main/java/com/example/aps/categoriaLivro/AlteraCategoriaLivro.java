@@ -1,4 +1,4 @@
-package com.example.aps.categoriaLeitor;
+package com.example.aps.categoriaLivro;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -6,26 +6,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.crudud.R;
 
 
-public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
+public class AlteraCategoriaLivro extends AppCompatActivity {
 
     // Lista de campos da tela
-    EditText prazoDev;
+    EditText prazoEmp;
     EditText descricao;
+    EditText taxaAtraso;
 
     Button alterar;
     Button deletar;
-    Button consultar;
     Button cadastrar;
+    Button consultar;
     Cursor cursor;
-    CategoriaLeitorDAO dao;
-    CategoriaLeitor obj;
+    CategoriaLivroDAO dao;
+    CategoriaLivro obj;
     String codigo;
 
     boolean hasExtra = false;
@@ -34,10 +34,10 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_altera_dados_categoria_leitor);
+        setContentView(R.layout.activity_altera_categoria_livro);
         codigo = this.getIntent().getStringExtra("_id");
-        dao = new CategoriaLeitorDAO(getBaseContext());
-        obj = new CategoriaLeitor();
+        dao = new CategoriaLivroDAO(getBaseContext());
+        obj = new CategoriaLivro();
 
         try {
             cursor = dao.carregaDadoById(Integer.parseInt(codigo));
@@ -47,12 +47,14 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        prazoDev = (EditText) findViewById(R.id.fieldPrazoDev);
+        prazoEmp = (EditText) findViewById(R.id.fieldPrazoEmp);
         descricao = (EditText) findViewById(R.id.fieldDescricao);
+        taxaAtraso = (EditText) findViewById(R.id.fieldTaxaAtraso);
 
-        if (hasExtra){
-            prazoDev.setText(cursor.getString(cursor.getColumnIndexOrThrow("prazoDev")));
+        if (hasExtra) {
+            prazoEmp.setText(cursor.getString(cursor.getColumnIndexOrThrow("prazoEmp")));
             descricao.setText(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
+            taxaAtraso.setText(cursor.getString(cursor.getColumnIndexOrThrow("taxaAtraso")));
 
             updateObject();
         }
@@ -72,6 +74,8 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
             public void onClick(View v) {
                 dao.deletaRegistro(Integer.parseInt(codigo));
                 clearFields();
+                alterar.setEnabled(hasExtra);
+                deletar.setEnabled(hasExtra);
             }
         });
 
@@ -89,20 +93,30 @@ public class AlteraDadosCategoriaLeitor extends AppCompatActivity {
         consultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlteraDadosCategoriaLeitor.this, ConsultaDadosCategoriaLeitor.class);
+                Intent intent = new Intent(AlteraCategoriaLivro.this, ConsultaCategoriaLivro.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        alterar.setEnabled(hasExtra);
+        deletar.setEnabled(hasExtra);
     }
 
     private void clearFields() {
-        prazoDev.setText("");
+        prazoEmp.setText("");
         descricao.setText("");
+        taxaAtraso.setText("");
     }
 
-    private void updateObject(){
-        obj.setPrazoDev(Integer.parseInt(prazoDev.getText().toString()));
+    private void updateObject() {
+
+        if (prazoEmp.getText().toString().equals("")) obj.setPrazoEmp(0);
+        else obj.setPrazoEmp(Integer.parseInt(prazoEmp.getText().toString()));
+        
         obj.setDescricao(descricao.getText().toString());
+
+        if (taxaAtraso.getText().toString().equals("")) obj.setTaxaAtraso(0);
+        else obj.setTaxaAtraso(Double.parseDouble(taxaAtraso.getText().toString()));
     }
 }

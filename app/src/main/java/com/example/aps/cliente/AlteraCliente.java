@@ -12,13 +12,13 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aps.categoriaLeitor.AlteraDadosCategoriaLeitor;
+import com.example.aps.categoriaLeitor.AlteraCategoriaLeitor;
 import com.example.aps.categoriaLeitor.CategoriaLeitor;
 import com.example.aps.categoriaLeitor.CategoriaLeitorDAO;
 import com.example.crudud.R;
 
 
-public class AlteraDadosCliente extends AppCompatActivity {
+public class AlteraCliente extends AppCompatActivity {
 
     // Lista de campos da tela
     EditText nome;
@@ -48,64 +48,10 @@ public class AlteraDadosCliente extends AppCompatActivity {
     boolean hasExtra = false;
 
     @Override
-    protected void onStart(){
-        super.onStart();
-
-        OnItemSelectedListener listener = new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                CategoriaLeitor cat = (CategoriaLeitor) parent.getItemAtPosition(position);
-                obj.setCodCat(cat.getCodigo());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        };
-
-        try {
-            codCat = (Spinner) findViewById(R.id.fieldCodCat);
-            daoCat = new CategoriaLeitorDAO(getBaseContext());
-            cursorCat = daoCat.carregaDados();
-            catList = new CategoriaLeitor[cursorCat.getCount()];
-
-            System.out.println("COMPRIMENTO: " + catList.length);
-
-            int i = 0;
-
-            do {
-                catList[i] = new CategoriaLeitor(
-                        cursorCat.getInt(cursorCat.getColumnIndexOrThrow("_id")),
-                        cursorCat.getInt(cursorCat.getColumnIndexOrThrow("prazoDev")),
-                        cursorCat.getString(cursorCat.getColumnIndexOrThrow("descricao"))
-                );
-                System.out.println(catList[i].getDescricao());
-                i++;
-            } while (cursorCat.moveToNext());
-
-            spinAdapter = new CatClienteAdapter(AlteraDadosCliente.this, android.R.layout.simple_spinner_item, catList);
-            codCat.setAdapter(spinAdapter);
-            codCat.setOnItemSelectedListener(listener);
-
-            if (hasExtra) {
-
-                int pos = spinAdapter.getPosition(cursorCliente.getInt(cursorCliente.getColumnIndexOrThrow("codCat")));
-                codCat.setSelection(pos);
-            }
-
-        } catch (Exception e) {
-
-            System.err.println("Deu merda carregando as categorias: \n\n");
-            e.printStackTrace();
-
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_altera_dados_cliente);
+        setContentView(R.layout.activity_altera_cliente);
         codigo = this.getIntent().getStringExtra("_id");
         daoCliente = new ClienteDAO(getBaseContext());
 
@@ -139,7 +85,7 @@ public class AlteraDadosCliente extends AppCompatActivity {
         btnCodCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlteraDadosCliente.this, AlteraDadosCategoriaLeitor.class);
+                Intent intent = new Intent(AlteraCliente.this, AlteraCategoriaLeitor.class);
                 startActivity(intent);
             }
         });
@@ -159,6 +105,8 @@ public class AlteraDadosCliente extends AppCompatActivity {
             public void onClick(View v) {
                 daoCliente.deletaRegistro(Integer.parseInt(codigo));
                 clearFields();
+                alterar.setEnabled(hasExtra);
+                deletar.setEnabled(hasExtra);
             }
         });
 
@@ -176,11 +124,66 @@ public class AlteraDadosCliente extends AppCompatActivity {
         consultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlteraDadosCliente.this, ConsultaDadosCliente.class);
+                Intent intent = new Intent(AlteraCliente.this, ConsultaCliente.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        OnItemSelectedListener listener = new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CategoriaLeitor cat = (CategoriaLeitor) parent.getItemAtPosition(position);
+                obj.setCodCat(cat.getCodigo());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        };
+
+        try {
+            codCat = (Spinner) findViewById(R.id.fieldCodCat);
+            daoCat = new CategoriaLeitorDAO(getBaseContext());
+            cursorCat = daoCat.carregaDados();
+            catList = new CategoriaLeitor[cursorCat.getCount()];
+
+            int i = 0;
+
+            do {
+                catList[i] = new CategoriaLeitor(
+                        cursorCat.getInt(cursorCat.getColumnIndexOrThrow("_id")),
+                        cursorCat.getInt(cursorCat.getColumnIndexOrThrow("prazoDev")),
+                        cursorCat.getString(cursorCat.getColumnIndexOrThrow("descricao"))
+                );
+                i++;
+            } while (cursorCat.moveToNext());
+
+            spinAdapter = new CatClienteAdapter(AlteraCliente.this, android.R.layout.simple_spinner_item, catList);
+            spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            codCat.setAdapter(spinAdapter);
+            codCat.setOnItemSelectedListener(listener);
+
+            if (hasExtra) {
+
+                int pos = spinAdapter.getPosition(cursorCliente.getInt(cursorCliente.getColumnIndexOrThrow("codCat")));
+                codCat.setSelection(pos);
+            }
+
+        } catch (Exception e) {
+
+            System.err.println("Deu merda carregando as categorias: \n\n");
+            e.printStackTrace();
+
+        }
+
+        alterar.setEnabled(hasExtra);
+        deletar.setEnabled(hasExtra);
     }
 
     private void clearFields() {

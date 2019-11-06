@@ -77,6 +77,27 @@ public class ClienteDAO {
         return cursor;
     }
 
+    public Cursor carregaDados(String nome) {
+        Field[] fl = Cliente.class.getDeclaredFields();
+        String[] campos = new String[fl.length];
+
+        for(int i = 0; i < fl.length; i++){
+            campos[i] = fl[i].getName();
+        }
+
+        String where = "nome LIKE '%" + nome + "%'";
+
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.query(table, campos, where, null, null, null, null, null);
+
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+
+        db.close();
+        return cursor;
+    }
+
     public Cursor carregaDadoById(int id){
         Field[] fl = Cliente.class.getDeclaredFields();
         String[] campos = new String[fl.length];

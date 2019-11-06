@@ -12,12 +12,12 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aps.categoriaLivro.AlteraDadosCategoriaLivro;
+import com.example.aps.categoriaLivro.AlteraCategoriaLivro;
 import com.example.aps.categoriaLivro.CategoriaLivro;
 import com.example.aps.categoriaLivro.CategoriaLivroDAO;
 import com.example.crudud.R;
 
-public class AlteraDadosLivro extends AppCompatActivity {
+public class AlteraLivro extends AppCompatActivity {
 
     // Lista de campos da tela
     EditText titulo;
@@ -38,15 +38,113 @@ public class AlteraDadosLivro extends AppCompatActivity {
     Button deletar;
     Button consultar;
     Button cadastrar;
+    Button emprestar;
     Cursor cursorLivro;
     Cursor cursorCat;
     LivroDAO daoLivro;
     CategoriaLivroDAO daoCat;
     Livro obj = new Livro();
 
-    String codigo;
+    int codigo;
 
-    boolean hasExtra = false;
+    boolean hasExtra;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_altera_livro);
+        codigo = this.getIntent().getIntExtra("_id", 0);
+        daoLivro = new LivroDAO(getBaseContext());
+
+        hasExtra = (codigo != 0);
+
+        titulo = (EditText) findViewById(R.id.fieldTitulo);
+        autores = (EditText) findViewById(R.id.fieldAutores);
+        edicao = (EditText) findViewById(R.id.fieldEdicao);
+        paginas = (EditText) findViewById(R.id.fieldPaginas);
+        dtPublicacao = (EditText) findViewById(R.id.fieldDtPublicacao);
+        isbn = (EditText) findViewById(R.id.fieldIsbn);
+        keywords = (EditText) findViewById(R.id.fieldKeywords);
+        editora = (EditText) findViewById(R.id.fieldEditora);
+
+        btnCodCat = (Button) findViewById(R.id.btnCodCat);
+        alterar = (Button) findViewById(R.id.btnAlterar);
+        deletar = (Button) findViewById(R.id.btnDeletar);
+        cadastrar = (Button) findViewById(R.id.btnCadastrar);
+        consultar = (Button) findViewById(R.id.btnConsultar);
+        emprestar = (Button) findViewById(R.id.btnEmprestar);
+
+        if (hasExtra) {
+
+            cursorLivro = daoLivro.carregaDadoById(codigo);
+
+            titulo.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("titulo")));
+            autores.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("autores")));
+            edicao.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("edicao")));
+            paginas.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("paginas")));
+            dtPublicacao.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("dtPublicacao")));
+            isbn.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("isbn")));
+            keywords.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("keywords")));
+            editora.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("editora")));
+
+            updateObject();
+        }
+
+        emprestar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlteraLivro.this, EmprestaLivro.class);
+                intent.putExtra("livroId", codigo);
+                intent.putExtra("livroTitle", titulo.getText().toString());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnCodCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlteraLivro.this, AlteraCategoriaLivro.class);
+                startActivity(intent);
+            }
+        });
+
+        alterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateObject();
+                daoLivro.alteraRegistro(obj, codigo);
+            }
+        });
+
+        deletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                daoLivro.deletaRegistro(codigo);
+                clearFields();
+            }
+        });
+
+        cadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateObject();
+                daoLivro.insereDado(obj);
+                clearFields();
+            }
+        });
+
+        consultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlteraLivro.this, FiltraConsultaLivro.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
 
     @Override
     protected void onStart(){
@@ -70,8 +168,6 @@ public class AlteraDadosLivro extends AppCompatActivity {
             cursorCat = daoCat.carregaDados();
             catList = new CategoriaLivro[cursorCat.getCount()];
 
-            System.out.println("COMPRIMENTO: " + catList.length);
-
             int i = 0;
 
             do {
@@ -81,11 +177,11 @@ public class AlteraDadosLivro extends AppCompatActivity {
                         cursorCat.getString(cursorCat.getColumnIndexOrThrow("descricao")),
                         cursorCat.getDouble(cursorCat.getColumnIndexOrThrow("taxaAtraso"))
                 );
-                System.out.println(catList[i].getDescricao());
                 i++;
             } while (cursorCat.moveToNext());
 
-            spinAdapter = new CatLivroAdapter(AlteraDadosLivro.this, android.R.layout.simple_spinner_item, catList);
+            spinAdapter = new CatLivroAdapter(AlteraLivro.this, android.R.layout.simple_spinner_item, catList);
+            spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             codCat.setAdapter(spinAdapter);
             codCat.setOnItemSelectedListener(listener);
 
@@ -101,94 +197,10 @@ public class AlteraDadosLivro extends AppCompatActivity {
             e.printStackTrace();
 
         }
-    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_altera_dados_livro);
-        codigo = this.getIntent().getStringExtra("_id");
-        daoLivro = new LivroDAO(getBaseContext());
-
-        try {
-            cursorLivro = daoLivro.carregaDadoById(Integer.parseInt(codigo));
-            hasExtra = true;
-        } catch (Exception e) {
-            System.err.println("Deu merda carregando os dados: \n\n");
-            e.printStackTrace();
-        }
-
-        titulo = (EditText) findViewById(R.id.fieldTitulo);
-        autores = (EditText) findViewById(R.id.fieldAutores);
-        edicao = (EditText) findViewById(R.id.fieldEdicao);
-        paginas = (EditText) findViewById(R.id.fieldPaginas);
-        dtPublicacao = (EditText) findViewById(R.id.fieldDtPublicacao);
-        isbn = (EditText) findViewById(R.id.fieldIsbn);
-        keywords = (EditText) findViewById(R.id.fieldKeywords);
-        editora = (EditText) findViewById(R.id.fieldEditora);
-
-        if (hasExtra) {
-            titulo.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("titulo")));
-            autores.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("autores")));
-            edicao.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("edicao")));
-            paginas.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("paginas")));
-            dtPublicacao.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("dtPublicacao")));
-            isbn.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("isbn")));
-            keywords.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("keywords")));
-            editora.setText(cursorLivro.getString(cursorLivro.getColumnIndexOrThrow("editora")));
-
-            updateObject();
-        }
-
-
-        btnCodCat = (Button) findViewById(R.id.btnCodCat);
-        btnCodCat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AlteraDadosLivro.this, AlteraDadosCategoriaLivro.class);
-                startActivity(intent);
-            }
-        });
-
-        alterar = (Button) findViewById(R.id.btnAlterar);
-        alterar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateObject();
-                daoLivro.alteraRegistro(obj, Integer.parseInt(codigo));
-            }
-        });
-
-        deletar = (Button) findViewById(R.id.btnDeletar);
-        deletar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                daoLivro.deletaRegistro(Integer.parseInt(codigo));
-                clearFields();
-            }
-        });
-
-        cadastrar = (Button) findViewById(R.id.btnCadastrar);
-        cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateObject();
-                daoLivro.insereDado(obj);
-                clearFields();
-            }
-        });
-
-        consultar = (Button) findViewById(R.id.btnConsultar);
-        consultar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AlteraDadosLivro.this, ConsultaDadosLivro.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        alterar.setEnabled(hasExtra);
+        deletar.setEnabled(hasExtra);
+        emprestar.setEnabled(hasExtra);
     }
 
     private void clearFields() {
@@ -205,8 +217,13 @@ public class AlteraDadosLivro extends AppCompatActivity {
     private void updateObject() {
         obj.setTitulo(titulo.getText().toString());
         obj.setAutores(autores.getText().toString());
-        obj.setEdicao(Integer.parseInt(edicao.getText().toString()));
-        obj.setPaginas(Integer.parseInt(paginas.getText().toString()));
+
+        if (edicao.getText().toString().equals("")) obj.setEdicao(0);
+        else obj.setEdicao(Integer.parseInt(edicao.getText().toString()));
+
+        if (paginas.getText().toString().equals("")) obj.setPaginas(0);
+        else obj.setPaginas(Integer.parseInt(paginas.getText().toString()));
+
         obj.setDtPublicacao(dtPublicacao.getText().toString());
         obj.setIsbn(isbn.getText().toString());
         obj.setKeywords(keywords.getText().toString());

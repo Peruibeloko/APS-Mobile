@@ -5,11 +5,11 @@
     android:id="@+id/Alter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aps.livro.AlteraDadosLivro">
+    tools:context="com.example.aps.cliente.AlteraCliente">
 
     <Button
         android:id="@+id/btnAlterar"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
@@ -19,7 +19,7 @@
 
     <Button
         android:id="@+id/btnDeletar"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
@@ -29,7 +29,7 @@
 
     <Button
         android:id="@+id/btnConsultar"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
@@ -55,7 +55,6 @@
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -65,15 +64,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtTitulo"
+                android:id="@+id/txtNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtTitle" />
+                android:text="@string/txtNome" />
 
             <EditText
-                android:id="@+id/fieldTitulo"
+                android:id="@+id/fieldNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -81,26 +80,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/fieldTitle" />
-
-            <TextView
-                android:id="@+id/txtAutores"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtAutor" />
-
-            <EditText
-                android:id="@+id/fieldAutores"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/fieldAutor" />
+                android:text="@string/fieldNome" />
 
             <TextView
                 android:id="@+id/txtCodCat"
@@ -108,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtCodCatLivro" />
+                android:text="@string/txtCodCatCliente" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -117,37 +97,92 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp">
 
-                <Button
-                    android:id="@+id/btnCodCat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/btnCadastrar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <Spinner
                     android:id="@+id/fieldCodCat"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:spinnerMode="dialog"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnCodCat"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <Button
+                    android:id="@+id/btnCodCat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnCadastrar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/txtEdicao"
+                android:id="@+id/txtEndereco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtEdicao" />
+                android:text="@string/txtEndereco" />
 
             <EditText
-                android:id="@+id/fieldEdicao"
+                android:id="@+id/fieldEndereco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPostalAddress"
+                android:text="@string/fieldEndereco" />
+
+            <TextView
+                android:id="@+id/txtCelular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtCelular" />
+
+            <EditText
+                android:id="@+id/fieldCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="phone"
+                android:text="@string/fieldCelular" />
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtEmail" />
+
+            <EditText
+                android:id="@+id/fieldEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:text="@string/fieldEmail" />
+
+            <TextView
+                android:id="@+id/txtCpf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/txtCpf" />
+
+            <EditText
+                android:id="@+id/fieldCpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -155,37 +190,18 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="number"
-                android:text="@string/fieldEdicao" />
+                android:text="@string/fieldCpf" />
 
             <TextView
-                android:id="@+id/txtPaginas"
+                android:id="@+id/txtDtNascimento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/txtPaginas" />
+                android:text="@string/txtDtNascimento" />
 
             <EditText
-                android:id="@+id/fieldPaginas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="number"
-                android:text="@string/fieldPaginas" />
-
-            <TextView
-                android:id="@+id/txtDtPublicacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtDtPublicacao" />
-
-            <EditText
-                android:id="@+id/fieldDtPublicacao"
+                android:id="@+id/fieldDtNascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -193,65 +209,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:inputType="date"
-                android:text="@string/fieldDtPublicacao" />
-
-            <TextView
-                android:id="@+id/txtIsbn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtIsbn" />
-
-            <EditText
-                android:id="@+id/fieldIsbn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="number"
-                android:text="@string/fieldIsbn" />
-
-            <TextView
-                android:id="@+id/txtKeywords"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtKeywords" />
-
-            <EditText
-                android:id="@+id/fieldKeywords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/fieldKeywords" />
-
-            <TextView
-                android:id="@+id/txtEditora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/txtEditora" />
-
-            <EditText
-                android:id="@+id/fieldEditora"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="@string/fieldEditora" />
-
+                android:text="@string/fieldDtNascimento" />
         </LinearLayout>
     </ScrollView>
 

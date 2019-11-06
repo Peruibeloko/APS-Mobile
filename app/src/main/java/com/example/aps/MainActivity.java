@@ -4,16 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aps.cliente.AlteraDadosCliente;
-import com.example.aps.cliente.ConsultaDadosCliente;
-import com.example.aps.livro.AlteraDadosLivro;
-import com.example.aps.livro.ConsultaDadosLivro;
-import com.example.aps.livro.LivroDAO;
+import com.example.aps.cliente.AlteraCliente;
+import com.example.aps.livro.AlteraLivro;
 import com.example.crudud.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         btnObras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlteraDadosLivro.class);
+                Intent intent = new Intent(MainActivity.this, AlteraLivro.class);
                 startActivity(intent);
             }
         });
@@ -36,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnLeitores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlteraDadosCliente.class);
+                Intent intent = new Intent(MainActivity.this, AlteraCliente.class);
                 startActivity(intent);
             }
         });

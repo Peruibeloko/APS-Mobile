@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.aps.cliente.AlteraDadosCliente" />
-        <activity android:name="com.example.aps.livro.AlteraDadosLivro" />
-        <activity android:name="com.example.aps.livro.ConsultaDadosLivro" />
+        <activity android:name="com.example.aps.livro.DevolveLivro"></activity>
+        <activity android:name="com.example.aps.livro.EmprestaLivro" />
+        <activity android:name="com.example.aps.livro.FiltraConsultaLivro" />
+        <activity android:name="com.example.aps.livro.ConsultaLivroEmprestado" />
+        <activity android:name="com.example.aps.cliente.AlteraCliente" />
+        <activity android:name="com.example.aps.livro.AlteraLivro" />
+        <activity android:name="com.example.aps.livro.ConsultaLivroAcervo" />
         <activity android:name="com.example.aps.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.aps.cliente.ConsultaDadosCliente" />
-        <activity android:name="com.example.aps.categoriaLivro.AlteraDadosCliente" />
-        <activity android:name="com.example.aps.categoriaLivro.ConsultaDadosCategoriaLivro" />
-        <activity android:name="com.example.aps.categoriaLivro.AlteraDadosCategoriaLivro" />
-        <activity android:name="com.example.aps.categoriaLeitor.ConsultaDadosCategoriaLeitor" />
-        <activity android:name="com.example.aps.categoriaLeitor.AlteraDadosCategoriaLeitor" />
+        <activity android:name="com.example.aps.cliente.ConsultaCliente" />
+        <activity android:name="com.example.aps.categoriaLivro.ConsultaCategoriaLivro" />
+        <activity android:name="com.example.aps.categoriaLivro.AlteraCategoriaLivro" />
+        <activity android:name="com.example.aps.categoriaLeitor.ConsultaCategoriaLeitor" />
+        <activity android:name="com.example.aps.categoriaLeitor.AlteraCategoriaLeitor" />
     </application>
 
 </manifest>

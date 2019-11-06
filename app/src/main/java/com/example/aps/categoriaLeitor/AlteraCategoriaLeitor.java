@@ -1,4 +1,4 @@
-package com.example.aps.categoriaLivro;
+package com.example.aps.categoriaLeitor;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,20 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.crudud.R;
 
 
-public class AlteraDadosCategoriaLivro extends AppCompatActivity {
+public class AlteraCategoriaLeitor extends AppCompatActivity {
 
     // Lista de campos da tela
-    EditText prazoEmp;
+    EditText prazoDev;
     EditText descricao;
-    EditText taxaAtraso;
 
     Button alterar;
     Button deletar;
-    Button cadastrar;
     Button consultar;
+    Button cadastrar;
     Cursor cursor;
-    CategoriaLivroDAO dao;
-    CategoriaLivro obj;
+    CategoriaLeitorDAO dao;
+    CategoriaLeitor obj;
     String codigo;
 
     boolean hasExtra = false;
@@ -34,10 +33,10 @@ public class AlteraDadosCategoriaLivro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_altera_dados_categoria_livro);
+        setContentView(R.layout.activity_altera_categoria_leitor);
         codigo = this.getIntent().getStringExtra("_id");
-        dao = new CategoriaLivroDAO(getBaseContext());
-        obj = new CategoriaLivro();
+        dao = new CategoriaLeitorDAO(getBaseContext());
+        obj = new CategoriaLeitor();
 
         try {
             cursor = dao.carregaDadoById(Integer.parseInt(codigo));
@@ -47,14 +46,12 @@ public class AlteraDadosCategoriaLivro extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        prazoEmp = (EditText) findViewById(R.id.fieldPrazoEmp);
+        prazoDev = (EditText) findViewById(R.id.fieldPrazoDev);
         descricao = (EditText) findViewById(R.id.fieldDescricao);
-        taxaAtraso = (EditText) findViewById(R.id.fieldTaxaAtraso);
 
-        if (hasExtra) {
-            prazoEmp.setText(cursor.getString(cursor.getColumnIndexOrThrow("prazoEmp")));
+        if (hasExtra){
+            prazoDev.setText(cursor.getString(cursor.getColumnIndexOrThrow("prazoDev")));
             descricao.setText(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
-            taxaAtraso.setText(cursor.getString(cursor.getColumnIndexOrThrow("taxaAtraso")));
 
             updateObject();
         }
@@ -74,6 +71,8 @@ public class AlteraDadosCategoriaLivro extends AppCompatActivity {
             public void onClick(View v) {
                 dao.deletaRegistro(Integer.parseInt(codigo));
                 clearFields();
+                alterar.setEnabled(hasExtra);
+                deletar.setEnabled(hasExtra);
             }
         });
 
@@ -91,22 +90,26 @@ public class AlteraDadosCategoriaLivro extends AppCompatActivity {
         consultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AlteraDadosCategoriaLivro.this, ConsultaDadosCategoriaLivro.class);
+                Intent intent = new Intent(AlteraCategoriaLeitor.this, ConsultaCategoriaLeitor.class);
                 startActivity(intent);
                 finish();
             }
         });
+
+        alterar.setEnabled(hasExtra);
+        deletar.setEnabled(hasExtra);
     }
 
     private void clearFields() {
-        prazoEmp.setText("");
+        prazoDev.setText("");
         descricao.setText("");
-        taxaAtraso.setText("");
     }
 
-    private void updateObject() {
-        obj.setPrazoEmp(Integer.parseInt(prazoEmp.getText().toString()));
+    private void updateObject(){
+
+        if (prazoDev.getText().toString().equals("")) obj.setPrazoDev(0);
+        else obj.setPrazoDev(Integer.parseInt(prazoDev.getText().toString()));
+
         obj.setDescricao(descricao.getText().toString());
-        obj.setTaxaAtraso(Double.parseDouble(taxaAtraso.getText().toString()));
     }
 }
